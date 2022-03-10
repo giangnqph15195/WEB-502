@@ -15,7 +15,7 @@ const infor : Product = {id:age,name:name};
 const stringArr: string[]= ["a","b","c"];
 const numberArr: number[]= [1,2,3];
 const objectArr: {}[]= [{id:1},{id:2}]
-
+ 
 function sum(numA: number, numB: number): number{
     return numA + numB;
 }

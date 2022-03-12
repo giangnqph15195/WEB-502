@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+// exports.__esModule = true;
 var a = 20;
 var b = 30;
 var name = "Nguyen Quy Giang";
@@ -14,3 +14,4 @@ function sum(numA, numB) {
 }
 console.log(sum(a, b));
 console.log(name);
+

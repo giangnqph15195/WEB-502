@@ -7,6 +7,7 @@ import ProductAdd from './page/ProductAdd'
 import AdminLayout from './page/layout/AdminLayout'
 import ProductList from './page/ProductList'
 import { Iproduct } from './type/product'
+import ProductEdit from './page/ProductEdit'
 
 function App() {
   const [products, setproducts] = useState<Iproduct[]>([])
@@ -29,6 +30,10 @@ function App() {
     setproducts([...products, data])
   
   }
+  const onUpdatePD = async (product: Iproduct) => {
+    const {data} = await axios.put(`http://localhost:3001/products/${product.id}`, product )
+    setproducts(products.map(item => item.id == data.id ? data : item))
+  }
   return (
     <div className='App'>
         <h1>HEloo</h1>
@@ -38,6 +43,7 @@ function App() {
           <Route path='admin' element={<AdminLayout />}>
             <Route path='products'> 
                 <Route index element={<ProductList products={products} onRemove={removeItem}/>}></Route>
+                <Route path=':id/edit' element={<ProductEdit onUpdate={onUpdatePD}/>}></Route>
                 <Route path='add' element={<ProductAdd name="Giang" onAdd={onHandleAdd}/>}></Route>
             </Route>
           </Route>

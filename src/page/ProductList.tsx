@@ -1,5 +1,6 @@
 import React from 'react'
 import { Iproduct } from '../type/product'
+import {Link} from 'react-router-dom'
 
 
 type ProductLists ={
@@ -21,6 +22,7 @@ const ProductList = (props: ProductLists ) => {
                         <td>{index + 1}</td>
                         <td>{item.name}</td>
                         <td>{item.price}</td>
+                        <td><Link to={`/admin/products/${item.id}/edit`}>Edit</Link></td>
                         <td><button onClick={() => props.onRemove(item.id)}>Remove</button></td>
                     </tr>
                 })}

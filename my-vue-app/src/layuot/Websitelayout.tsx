@@ -4,11 +4,11 @@ type Props = {}
 
 const Websitelayout = (props: Props) => {
   return (
-    <div>Websitelayout
+    <div>
     <header>
         
         <ul>
-          <li><NavLink to='/'>Home Page</NavLink></li>
+          <li className='text-orange-800'><NavLink  to='/'>Home Page</NavLink></li>
           <li><NavLink to='/products'>Products Page</NavLink></li>
           <li><NavLink to='/blog'>Blog Page</NavLink></li>
         </ul>

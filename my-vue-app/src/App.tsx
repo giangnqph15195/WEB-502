@@ -3,6 +3,7 @@ import logo from './logo.svg'
 import './App.css'
 import { NavLink, Route, Routes } from 'react-router-dom'
 import HomePage from './pages/HomePage'
+import 'antd/dist/antd.css';
 import Websitelayout from './layuot/Websitelayout'
 import ListProducts from './pages/ListProducts'
 import BlogPage from './pages/BlogPage'
@@ -12,9 +13,9 @@ function App() {
 
   return (
     <div className="App">
-     <h1>heLLO</h1>
-     <h1>{count} </h1>
-    
+    <h1 className="text-3xl font-bold text-orange-800 underline">
+      Hello world!
+    </h1>
      
      <Routes>
         <Route path='/' element={<Websitelayout />}>

@@ -10,5 +10,27 @@
       "price": "123456",
       "id": 4
     }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Giang 14432132",
+      "email": "abc@gmail.com",
+      "password": "123456a"
+    },
+    {
+      "email": "giangqu13579@gmail.com",
+      "password": "$2a$10$L1IvSROsxCE0hmYKFt2dC.nNCQixfapHO1k3iee5rZ.ZmOrYRCNxO",
+      "name": "Giang 69",
+      "pass": "1234567",
+      "id": 2
+    },
+    {
+      "email": "giang113@gmail.com",
+      "password": "$2a$10$LyMVkrXtC6/5goQDiaWx9OhNS/0huRxS4pPw5wspWn0.y3EMwQgP.",
+      "name": "Giang 69",
+      "pass": "1234567",
+      "id": 3
+    }
   ]
 }

@@ -8,9 +8,13 @@ import AdminLayout from './page/layout/AdminLayout'
 import ProductList from './page/ProductList'
 import { Iproduct } from './type/product'
 import ProductEdit from './page/ProductEdit'
+import SignUp from './page/SignUp'
+import { UserType } from './type/User'
+import SingIn from './page/SingIn'
 
 function App() {
   const [products, setproducts] = useState<Iproduct[]>([])
+  
 
   useEffect (()=>{
     const getProduct = async () => {
@@ -39,7 +43,10 @@ function App() {
         <h1>HEloo</h1>
         <Routes>
           <Route path='/' element={`Home Page`}>
+            
           </Route>
+          <Route path='signup' element={<SignUp />}></Route>
+          <Route path='signin' element={<SingIn/>}></Route>
           <Route path='admin' element={<AdminLayout />}>
             <Route path='products'> 
                 <Route index element={<ProductList products={products} onRemove={removeItem}/>}></Route>

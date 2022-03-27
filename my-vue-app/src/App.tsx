@@ -12,6 +12,7 @@ import SignUp from './pages/SignUp'
 import Adminlayout from './layuot/Adminlayout'
 import Products from './pages/Admin/Products'
 import AddProduct from './pages/Admin/AddProduct'
+import EditProduct from './pages/Admin/EditProduct'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -33,7 +34,8 @@ function App() {
 
           <Route path='admin' element={<Adminlayout/>}>
             <Route index element={<Products/>}></Route>
-            <Route path='/admin/add' element={<AddProduct/>}></Route>
+            <Route path='add' element={<AddProduct/>}></Route>
+            <Route path='edit' element={<EditProduct/>}></Route>
           </Route>
        </Routes>
     </div>

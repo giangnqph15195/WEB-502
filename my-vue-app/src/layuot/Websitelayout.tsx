@@ -50,20 +50,7 @@ const Websitelayout = (props: Props) => {
                
                 
             </div>
-            <div className="flex justify-center">
-              <img className="h-1 mt-8" src="https://res.cloudinary.com/dkrifqhuk/image/upload/v1644632592/asm/line_title_v9kuva.png" alt="" />
-                <p className="mt-4 mx-8 text-lg font-bold">THỰC ĐƠN</p>
-              <img className="h-1 mt-8" src="https://res.cloudinary.com/dkrifqhuk/image/upload/v1644632592/asm/line_title_v9kuva.png" alt="" />
-            </div>
-            <div className="flex justify-center">
             
-                <div className="mx-8 my-8">
-                    <a href="/category/${cate.id}">
-                        {/* <img width="40" src="${cate.img}"> */}
-                        <p className="text-center font-medium text-orange-400 text-xl my-2">Pizaa</p>
-                    </a>
-                </div>
-                </div>
         
         
       </header>

@@ -25,6 +25,9 @@
     display: block;
     background-color: aqua;
 }
+.form-label{
+    font-weight: 600;
+}
 /* .news {
     @apply my-12
 }

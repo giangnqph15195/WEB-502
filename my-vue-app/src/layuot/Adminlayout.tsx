@@ -1,6 +1,5 @@
 import React from 'react'
 import {NavLink, Outlet} from 'react-router-dom'
-import Sidevar from '../api/compoment/Sidebar'
 import { Layout, Menu, Breadcrumb } from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 

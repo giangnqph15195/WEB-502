@@ -1,9 +1,13 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { TypeProduct } from '../../type/products'
 
-type Props = {}
+type PropsList = {
+  product: TypeProduct[],
+  onRemove: (id:number) => void
+}
 
-const Products = (props: Props) => {
+const Products = (props: PropsList) => {
   return (
     <div>
         <div><NavLink to="/admin/add"><i className="fa-solid fa-plus"></i>Thêm</NavLink></div>
@@ -18,21 +22,18 @@ const Products = (props: Props) => {
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td> 
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td className='w-2'><NavLink to='/admin/edit'>Edit</NavLink></td>
+    {props.product.map((item, index) => {
+      return <tr key={index}>
+      <th scope="row">{index + 1}</th>
+      <td>{item.name}</td>
+      <td><img width={50} src={`${item.img}`} alt="" /></td> 
+      <td>{item.price}</td>
+      <td>{item.details}</td>
+      <td className='w-2'><NavLink to={`/admin/${item.id}/edit`}>Edit</NavLink></td>
+      <td className='w-2'><button onClick={()=> props.onRemove(item.id)}>Xóa</button></td>
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-      <td>Otto</td>
-    </tr>
+    })}
+    
    
   </tbody>
 </table>

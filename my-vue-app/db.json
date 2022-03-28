@@ -3,15 +3,15 @@
     {
       "name": "Product A update",
       "img": "https://res.cloudinary.com/dkrifqhuk/image/upload/v1645928735/asm/oqajp3ohxpm2ldw5pwlx.jpg",
-      "price": "9000",
-      "details": "Mỳ Ý",
+      "price": "90001321",
+      "description": "Mỳ Ý",
       "id": 1
     },
     {
       "name": "Product B",
       "img": "https://res.cloudinary.com/dkrifqhuk/image/upload/v1646137717/asm/vhfhngvgupru7jxrtauj.jpg",
       "price": "120000",
-      "details": "Pizza VIp",
+      "description": "Pizza VIp",
       "id": 2
     }
   ]

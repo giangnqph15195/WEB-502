@@ -1,24 +1,39 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
-
+import { NavLink , useNavigate } from 'react-router-dom'
+import { useForm, SubmitHandler } from 'react-hook-form'
+import { signin } from '../api/User'
+import { authenticated } from '../utils/localSgate'
 type Props = {}
-
+type FormSignIn = {
+  email:string,
+  password: string
+}
 const SignIn = (props: Props) => {
+  const {register, handleSubmit, formState: {errors}} = useForm<FormSignIn>()
+  const navigate = useNavigate()
+  const onSubmit : SubmitHandler<FormSignIn> = async data => {
+    const {data : user} = await signin(data)
+    authenticated(user, ()=>{
+      navigate("/")
+    })
+
+    console.log(data)
+  }
   return (
     <div>
       <div className='bg-cover bg-center ... bg-[url(https://res.cloudinary.com/dkrifqhuk/image/upload/v1648372167/asm/login-background.591c777f_czzngn.jpg)] pt-28 pb-56' >
-      <NavLink to='/'><div className='absolute top-8 left-20 bg-white rounded-lg p-2'>Trở về</div></NavLink>
+      <NavLink to='/'><div className='absolute top-8 left-20 bg-white rounded-lg p-2 flex'><i className="fa-solid fa-angle-left text-lg mx-2"></i><img width={70} src="https://res.cloudinary.com/dkrifqhuk/image/upload/v1645017092/asm/footer_logo1_gvkbmr.png" alt="" /></div></NavLink>
             <div>
-                <form action="" className='formm bg-white rounded-lg p-8'>
+                <form action="" onSubmit={handleSubmit(onSubmit)} className='formm bg-white rounded-lg p-8'>
                     <h3 className='text-center text-xl font-bold'>Đăng ký thành viên</h3>
                     <div className='my-8'></div>
                     <div className='biginput'>
                         <label className='font-bold' htmlFor="">Email:</label>
-                        <input className='inputform' type="text" placeholder='VD: email@abc.com' />
+                        <input className='inputform' type="text" placeholder='VD: email@abc.com' {...register('email')} />
                     </div>
                     <div className='biginput'>
                         <label className='font-bold' htmlFor="">Mật khẩu:</label>
-                        <input className='inputform' type="text" />
+                        <input className='inputform' type="text" placeholder='Mật khẩu' {...register('password')} />
                     </div>
                     <div className='biginput'>
                        <p className='text-center text-sm'>Thông qua việc đăng ký, bạn xác nhận rằng bạn đồng ý Điều khoàn sử dụng và đã đọc, hiểu Chính sách Quyền riêng tư của chúng tôi</p>

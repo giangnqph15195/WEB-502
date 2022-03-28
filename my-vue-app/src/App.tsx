@@ -15,7 +15,8 @@ import Products from './pages/Admin/Products'
 import AddProduct from './pages/Admin/AddProduct'
 import EditProduct from './pages/Admin/EditProduct'
 import { TypeProduct } from './type/products'
-import { add, list, remove, update } from './api/products'
+import { create, list, remove, update } from './api/products'
+import DetailProduct from './pages/DetailProduct'
 // import { add } from './api/products'
 
 function App() {
@@ -30,27 +31,28 @@ function App() {
 
 
   const onAddPd = async (product : TypeProduct) =>{
-    const {data} = await add(product)
+    const {data} = await create(product)
     setproducts([...products, data])
   }
 
-  const RemoveItem = async (id:number)=> {
-    remove(id)
+  const RemoveItem = async (_id:number)=> {
+    remove(_id)
 
-    setproducts(products.filter(item => item.id !== id))
+    setproducts(products.filter(item => item._id !== _id))
   }
 
   const onUpdateItem = async (product: TypeProduct)=>{
     const {data} = await update(product)
-    setproducts(products.map(item=> item.id == data.id ? data : item))
+    setproducts(products.map(item=> item._id == data._id ? data : item))
   }
   return (
     <div className="App">
      <Routes>
         <Route path='/' element={<Websitelayout />}>
-          <Route index element={<HomePage />}></Route>
+          <Route index element={<HomePage product={products}/>}></Route>
           <Route path='products'>
             <Route index element={<ListProducts/>}></Route>
+            <Route path=':id' element={<DetailProduct/>}></Route>
           </Route>
           <Route path='/blog' element={<BlogPage/>}></Route>
           

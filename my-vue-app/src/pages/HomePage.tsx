@@ -1,10 +1,13 @@
 import React from 'react'
 import { Card } from 'antd';
 import { NavLink } from 'react-router-dom';
+import { TypeProduct } from '../type/products';
 
 const { Meta } = Card;
 
-type Props = {}
+type Props = {
+  product: TypeProduct[]
+}
 
 const HomePage = (props: Props) => {
   return (
@@ -27,15 +30,28 @@ const HomePage = (props: Props) => {
 
 
                 <div className='m-auto max-w-7xl grid grid-cols-4 gap-4'>
-                <NavLink to='deltais'><Card
+                
+                  {props.product.map((item , index)=> {
+                    return<NavLink to={`/products/${item._id}`}>
+                    <Card
+                    hoverable
+                    style={{ width:230}}
+                    cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+                  >
+                    <Meta className='text-center' title={`${item.name}`} description={`${item.price}`} />
+                    <button className='bg-orange-600 p-2 rounded-xl mt-2 ml-12'>Mua Hàng</button>
+                  </Card></NavLink>
+                  })}
+                  
+                {/* <Card
                   hoverable
                   style={{ width:230}}
                   cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
                 >
                   <Meta className='text-center' title="Pizza One Shot" description="17000" />
                   <button className='bg-orange-600 p-2 rounded-xl mt-2 ml-12'>Mua Hàng</button>
-                </Card></NavLink>
-                <Card
+                </Card> */}
+                {/* <Card
                   hoverable
                   style={{ width:230}}
                   cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
@@ -50,15 +66,7 @@ const HomePage = (props: Props) => {
                 >
                   <Meta className='text-center' title="Pizza One Shot" description="17000" />
                   <button className='bg-orange-600 p-2 rounded-xl mt-2 ml-12'>Mua Hàng</button>
-                </Card>
-                <Card
-                  hoverable
-                  style={{ width:230}}
-                  cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-                >
-                  <Meta className='text-center' title="Pizza One Shot" description="17000" />
-                  <button className='bg-orange-600 p-2 rounded-xl mt-2 ml-12'>Mua Hàng</button>
-                </Card>
+                </Card> */}
                 </div>
     </div>
   )

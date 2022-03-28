@@ -9,7 +9,7 @@ type Form = {
   name: string,
   img: string,
   price:number,
-  details: string
+  description: string
 }
 const EditProduct = (props: PropsUpdate) => {
   const {register, handleSubmit ,formState:{errors}, reset} = useForm<Form>()
@@ -46,7 +46,7 @@ const EditProduct = (props: PropsUpdate) => {
     </div>
     <div className="mb-3">
       <label  className="form-label">Details:</label>
-      <input type="text" className='form-control' {...register('details')} />
+      <input type="text" className='form-control' {...register('description')} />
     </div>
     <button type="submit" className="btn btn-primary">Submit</button>
   </form></div>

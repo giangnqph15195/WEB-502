@@ -4,7 +4,7 @@ import { TypeProduct } from '../../type/products'
 
 type PropsList = {
   product: TypeProduct[],
-  onRemove: (id:number) => void
+  onRemove: (_id:number) => void
 }
 
 const Products = (props: PropsList) => {
@@ -26,11 +26,11 @@ const Products = (props: PropsList) => {
       return <tr key={index}>
       <th scope="row">{index + 1}</th>
       <td>{item.name}</td>
-      <td><img width={50} src={`${item.img}`} alt="" /></td> 
+      {/* <td><img width={50} src={`${item.img}`} alt="" /></td>  */}
       <td>{item.price}</td>
-      <td>{item.details}</td>
-      <td className='w-2'><NavLink to={`/admin/${item.id}/edit`}>Edit</NavLink></td>
-      <td className='w-2'><button onClick={()=> props.onRemove(item.id)}>Xóa</button></td>
+      <td>{item.description}</td>
+      <td className='w-2'><NavLink to={`/admin/${item._id}/edit`}>Edit</NavLink></td>
+      <td className='w-2'><button onClick={()=> props.onRemove(item._id)}>Xóa</button></td>
     </tr>
     })}
     

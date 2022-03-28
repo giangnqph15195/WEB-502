@@ -23,7 +23,7 @@
 }
 .headeracc:hover .validater{
     display: block;
-    background-color: aqua;
+    /* background-color: aqua; */
 }
 .form-label{
     font-weight: 600;

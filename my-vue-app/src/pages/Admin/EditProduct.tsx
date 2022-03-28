@@ -7,7 +7,7 @@ type PropsUpdate = {
 }
 type Form = {
   name: string,
-  img: string,
+  // img: string,
   price:number,
   description: string
 }
@@ -38,7 +38,7 @@ const EditProduct = (props: PropsUpdate) => {
     </div>
     <div className="mb-3">
       <label  className="form-label">Image Product:</label>
-      <input type="text" className='form-control' {...register('img')} />
+      {/* <input type="text" className='form-control' {...register('img')} /> */}
     </div>
     <div className="mb-3">
       <label  className="form-label">Price:</label>

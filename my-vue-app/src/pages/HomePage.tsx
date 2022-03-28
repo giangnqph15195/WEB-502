@@ -26,6 +26,20 @@ const HomePage = (props: Props) => {
                         <p className="text-center font-medium text-orange-400 text-xl my-2">Pizaa</p>
                     </a>
                 </div>
+                <div className="mx-8 mb-20">
+                    <a href="/category/${cate.id}">
+                      <img  width="40" src="https://res.cloudinary.com/dkrifqhuk/image/upload/v1645019430/asm/icon_pizza_ucvh3k.png" alt="" />
+                        {/* <img width="40" src="${cate.img}"> */}
+                        <p className="text-center font-medium text-orange-400 text-xl my-2">Pizaa</p>
+                    </a>
+                </div>
+                <div className="mx-8 mb-20">
+                    <a href="/category/${cate.id}">
+                      <img  width="40" src="https://res.cloudinary.com/dkrifqhuk/image/upload/v1645019430/asm/icon_pizza_ucvh3k.png" alt="" />
+                        {/* <img width="40" src="${cate.img}"> */}
+                        <p className="text-center font-medium text-orange-400 text-xl my-2">Pizaa</p>
+                    </a>
+                </div>
                 </div>
 
 

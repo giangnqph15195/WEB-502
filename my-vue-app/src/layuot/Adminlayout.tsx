@@ -35,10 +35,13 @@ const Adminlayout = (props: Props) => {
             defaultOpenKeys={['sub1']}
             style={{ height: '100%' }}
           >
-              <NavLink to="/admin"><Menu.Item icon={<UserOutlined className='ml-8' />}  key="1">Products</Menu.Item></NavLink>
-              <NavLink to='/admin/user'><Menu.Item icon={<LaptopOutlined  className='ml-8'/>}  key="5">Users</Menu.Item></NavLink>
+              <NavLink to="/admin"><Menu.Item icon={<LaptopOutlined className='navbar' />}  key="1">Products</Menu.Item></NavLink>
+              <NavLink to='/admin/categories'><Menu.Item icon={<LaptopOutlined  className='navbar'/>}  key="5">Categories</Menu.Item></NavLink>
+              <NavLink to='/admin/users'><Menu.Item icon={<UserOutlined  className='navbar'/>}  key="5">Users</Menu.Item></NavLink>
               
-              <NavLink to="/admin/card"><Menu.Item icon={<NotificationOutlined className='ml-8'/>} key="9">Cards</Menu.Item></NavLink>
+              <NavLink to="/admin/card"><Menu.Item icon={<NotificationOutlined className='navbar'/>} key="9">Cards</Menu.Item></NavLink>
+              <NavLink to="/"><Menu.Item icon={<UserOutlined className='navbar' />}  key="1">Home Pgae</Menu.Item></NavLink>
+
           </Menu>
         </Sider>
         <Content style={{ padding: '0 24px', minHeight: 510 }}><Outlet/></Content>

@@ -28,6 +28,9 @@
 .form-label{
     font-weight: 600;
 }
+.navbar{
+    @apply ml-8;
+}
 /* .news {
     @apply my-12
 }

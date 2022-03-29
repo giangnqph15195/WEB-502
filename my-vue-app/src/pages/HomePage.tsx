@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Card } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { TypeProduct } from '../type/products';
+import { getall } from '../api/categories'
+import { TypeCategories } from '../type/categories';
+import Item from 'antd/lib/list/Item';
 
 const { Meta } = Card;
 
@@ -10,6 +13,15 @@ type Props = {
 }
 
 const HomePage = (props: Props) => {
+  const [categories, setcategories] = useState<TypeCategories[]>([])
+
+  useEffect(()=>{
+    const getCate = async () => {
+      const {data : cates} = await getall()
+      setcategories(cates)
+    }
+    getCate()
+  },[])
   return (
     <div>
       <div className="flex justify-center">
@@ -18,28 +30,15 @@ const HomePage = (props: Props) => {
               <img className="h-1 mt-8" src="https://res.cloudinary.com/dkrifqhuk/image/upload/v1644632592/asm/line_title_v9kuva.png" alt="" />
             </div>
             <div className="flex justify-center">
-            
-                <div className="mx-8 mb-20">
-                    <a href="/category/${cate.id}">
-                      <img  width="40" src="https://res.cloudinary.com/dkrifqhuk/image/upload/v1645019430/asm/icon_pizza_ucvh3k.png" alt="" />
-                        {/* <img width="40" src="${cate.img}"> */}
-                        <p className="text-center font-medium text-orange-400 text-xl my-2">Pizaa</p>
-                    </a>
-                </div>
-                <div className="mx-8 mb-20">
-                    <a href="/category/${cate.id}">
-                      <img  width="40" src="https://res.cloudinary.com/dkrifqhuk/image/upload/v1645019430/asm/icon_pizza_ucvh3k.png" alt="" />
-                        {/* <img width="40" src="${cate.img}"> */}
-                        <p className="text-center font-medium text-orange-400 text-xl my-2">Pizaa</p>
-                    </a>
-                </div>
-                <div className="mx-8 mb-20">
-                    <a href="/category/${cate.id}">
-                      <img  width="40" src="https://res.cloudinary.com/dkrifqhuk/image/upload/v1645019430/asm/icon_pizza_ucvh3k.png" alt="" />
-                        {/* <img width="40" src="${cate.img}"> */}
-                        <p className="text-center font-medium text-orange-400 text-xl my-2">Pizaa</p>
-                    </a>
-                </div>
+            {categories.map((item, index)=>{
+              return <div className="mx-8 mb-20">
+                <NavLink to={`category/${item.slug}`}>
+                <img  width="40" src={`${item.image}`} alt="" />
+                  <p className="text-center font-medium text-orange-400 text-xl my-2">{item.name}</p>
+                </NavLink>
+          </div>
+            })}
+              
                 </div>
 
 

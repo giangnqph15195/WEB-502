@@ -17,10 +17,26 @@ import EditProduct from './pages/Admin/EditProduct'
 import { TypeProduct } from './type/products'
 import { create, list, remove, update } from './api/products'
 import DetailProduct from './pages/DetailProduct'
+import Catrgories from './pages/Admin/Catrgories'
+import { TypeCategories } from './type/categories'
+import { addct, getall, removect, updatect } from './api/categories'
+import AddCategpries from './pages/Admin/AddCategpries'
+import Users from './pages/Admin/Users'
+import Categories from './pages/Categories'
+import EditCategory from './pages/Admin/EditCategory'
+import Item from 'antd/lib/list/Item'
 // import { add } from './api/products'
 
 function App() {
   const [products, setproducts] = useState<TypeProduct[]>([])
+  const [categories,setcategories] = useState<TypeCategories[]>([])
+  useEffect(()=>{
+    const getCT = async () => {
+      const {data} = await getall()
+      setcategories(data)
+    }
+    getCT()
+  },[])
   useEffect(()=> {
       const getPd = async ()=> {
         const {data} = await list()
@@ -36,14 +52,36 @@ function App() {
   }
 
   const RemoveItem = async (_id:number)=> {
-    remove(_id)
-
-    setproducts(products.filter(item => item._id !== _id))
+    const confirm = window.confirm('Bạn có muốn xóa không')
+    if(confirm){
+      remove(_id)
+      setproducts(products.filter(item => item._id !== _id))
+    }
+   
   }
 
   const onUpdateItem = async (product: TypeProduct)=>{
     const {data} = await update(product)
     setproducts(products.map(item=> item._id == data._id ? data : item))
+  }
+
+  const AddCategory = async (category: TypeCategories) => {
+    const {data} = await addct(category)
+    setcategories([...categories, data])
+  }
+
+  const UpdateCaTe =async (editcategory: TypeCategories) => {
+    const {data} = await updatect(editcategory)
+    setcategories(categories.map(item => item._id == data._id ? data : item))
+  }
+
+  const removeCT = async (_id: number) => {
+    const confirm = window.confirm("Bạn có muốn xóa danh mục")
+    if(confirm){
+      removect(_id)
+      setcategories(categories.filter(item => item._id !== _id))
+    }
+  
   }
   return (
     <div className="App">
@@ -54,6 +92,7 @@ function App() {
             <Route index element={<ListProducts/>}></Route>
             <Route path=':id' element={<DetailProduct/>}></Route>
           </Route>
+          <Route path='category/:slug' element={<Categories/>}></Route>
           <Route path='/blog' element={<BlogPage/>}></Route>
           
         </Route>
@@ -65,6 +104,14 @@ function App() {
             <Route index element={<Products product={products} onRemove={RemoveItem}/>}></Route>
             <Route path='add' element={<AddProduct onAdd={onAddPd}/>}></Route>
             <Route path=':id/edit' element={<EditProduct onUpdate={onUpdateItem}/>}></Route>
+            <Route path='categories' >
+              <Route index element={<Catrgories category={categories} onRemovect={removeCT}/>}></Route>
+              <Route path='add' element={<AddCategpries onAddCT={AddCategory}/>}></Route>
+              <Route path=':id/edit' element={<EditCategory onUpdatect={UpdateCaTe}/>}></Route>
+            </Route>
+            <Route path='users'>
+              <Route index element={<Users/>}></Route>
+            </Route>
           </Route>
        </Routes>
     </div>

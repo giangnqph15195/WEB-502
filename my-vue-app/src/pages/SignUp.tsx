@@ -7,13 +7,14 @@ type FormSignUp = {
     name: string,
     email:string,
     password: string
+    role:number
 }
 const SignUp = (props: Props) => {
     const {register, handleSubmit, formState: {errors}} = useForm<FormSignUp>()
     const navigate = useNavigate()
     const onSingUp: SubmitHandler<FormSignUp> = data => {
         signup(data)
-        navigate('/signin')
+        // navigate('/signin')F
         console.log(data)
     }
   return (
@@ -36,6 +37,9 @@ const SignUp = (props: Props) => {
                     <div className='biginput'>
                         <label className='font-bold' htmlFor="">Mật khẩu:</label>
                         <input className='inputform' placeholder='Mật khẩu' type="password" {...register('password')} />
+                    </div>
+                    <div className='biginput'>
+                        <input className='inputform' type="hidden" value={`1`} {...register('role')} />
                     </div>
                     <div className='biginput'>
                        <p className='text-center text-sm'>Thông qua việc đăng ký, bạn xác nhận rằng bạn đồng ý Điều khoàn sử dụng và đã đọc, hiểu Chính sách Quyền riêng tư của chúng tôi</p>

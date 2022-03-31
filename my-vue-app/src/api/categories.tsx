@@ -6,7 +6,7 @@ export const getall = () =>{
     return instance.get(url)
 }
 export const get = (_id:string | undefined) =>{
-    const url = `/category/${_id}`
+    const url = `/categorys/${_id}`
     return instance.get(url)
 }
 export const read = (slug : string) => {

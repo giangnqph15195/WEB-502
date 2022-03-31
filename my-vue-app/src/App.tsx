@@ -15,6 +15,7 @@ import Products from './pages/Admin/Products'
 import AddProduct from './pages/Admin/AddProduct'
 import EditProduct from './pages/Admin/EditProduct'
 import { TypeProduct } from './type/products'
+import {TypeUser} from './type/user'
 import { create, list, remove, update } from './api/products'
 import DetailProduct from './pages/DetailProduct'
 import Catrgories from './pages/Admin/Catrgories'
@@ -25,11 +26,15 @@ import Users from './pages/Admin/Users'
 import Categories from './pages/Categories'
 import EditCategory from './pages/Admin/EditCategory'
 import Item from 'antd/lib/list/Item'
+import { addus, listuser, signup } from './api/User'
+import AddUser from './pages/Admin/AddUser'
+import EditUser from './pages/Admin/EditUser'
 // import { add } from './api/products'
 
 function App() {
   const [products, setproducts] = useState<TypeProduct[]>([])
   const [categories,setcategories] = useState<TypeCategories[]>([])
+  const [users, setuser] = useState<TypeUser[]>([])
   useEffect(()=>{
     const getCT = async () => {
       const {data} = await getall()
@@ -45,6 +50,13 @@ function App() {
       getPd()
   },[])
 
+  useEffect(()=>{
+    const getUser = async () => {
+      const {data} = await listuser()
+      setuser(data)
+    }
+    getUser()
+  },[])
 
   const onAddPd = async (product : TypeProduct) =>{
     const {data} = await create(product)
@@ -83,6 +95,10 @@ function App() {
     }
   
   }
+  const onAddUser = async (userr: TypeUser) => {
+    const {data} = await addus(userr)
+    setuser([...users, data])
+  }
   return (
     <div className="App">
      <Routes>
@@ -110,7 +126,9 @@ function App() {
               <Route path=':id/edit' element={<EditCategory onUpdatect={UpdateCaTe}/>}></Route>
             </Route>
             <Route path='users'>
-              <Route index element={<Users/>}></Route>
+              <Route index element={<Users user={users}/>  }></Route>
+              <Route path='add' element={<AddUser onUser={onAddUser} />}></Route>
+              <Route path=':id/edit' element={<EditUser/>}></Route>
             </Route>
           </Route>
        </Routes>

@@ -2,5 +2,6 @@ export type TypeProduct = {
     _id?:number,
     name:string,
     price:number,
-    description: string
+    description: string,
+    category: string
 }

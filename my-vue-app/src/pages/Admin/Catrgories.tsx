@@ -33,7 +33,6 @@ const Catrgories = (props: Props) => {
           <td className='w-2'><button onClick={()=> props.onRemovect(item._id)}><i className="fa-solid fa-trash"></i></button></td>
         </tr>
       })}
-     
     
    
   </tbody>

@@ -10,6 +10,7 @@ type PropsList = {
 const Products = (props: PropsList) => {
   return (
     <div>
+      <h3 className='text-center text-3xl font-bold'>List Products</h3>
         <div><NavLink to="/admin/add"><i className="fa-solid fa-plus"></i>Thêm</NavLink></div>
         <table className="table table-striped table-hover">
   <thead className='table-dark'>

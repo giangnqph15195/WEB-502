@@ -1,14 +1,15 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {useForm,SubmitHandler} from 'react-hook-form'
 import {useNavigate, useParams} from 'react-router-dom'
-import { get } from '../../api/categories'
+import { get, getall } from '../../api/categories'
+import { TypeCategories } from '../../type/categories'
 
 type Props = {
     onUpdatect : (editcategory: Form) =>void
 }
 type Form = {
     name:string,
-    image:string
+    image:string,
 }
 
 const EditCategory = (props: Props) => {

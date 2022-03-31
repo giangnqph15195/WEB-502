@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { isValidElement } from 'react'
 import {NavLink, Outlet} from 'react-router-dom'
+import { isAuthenticate } from '../utils/localSgate'
 type Props = {}
 
 const Websitelayout = (props: Props) => {
@@ -21,17 +22,18 @@ const Websitelayout = (props: Props) => {
                 </NavLink>
                 </div>
                 <div className='mt-2 '>
-                <a href="" className='headeracc text-white text-3xl bg-red-800 rounded-md px-2 py-2 hover:bg-black hover:text-orange-700'>
-                <i className="fas fa-user header__acc-icon"></i>
-                </a>
+                {/* <a href="" className='headeracc text-white text-3xl bg-red-800 rounded-md px-2 py-2 hover:bg-black hover:text-orange-700'> */}
+                {/* <i className="fas fa-user header__acc-icon"></i> */}
+                {isAuthenticate()}
+
+                {/* </a> */}
                 </div>
                 
-                <div className='validater bg-white p-2 rounded-md absolute'>
+                {/* <div className='validater bg-white p-2 rounded-md absolute'>
                   <ul className='pr-2'>
-                    <li><NavLink className="" to='/signup'>Đăng Ký</NavLink></li>
-                    <li><NavLink className="" to='signin'>Đăng Nhập</NavLink></li>
+                    
                   </ul>
-                </div>
+                </div> */}
      </div>
             <div className="bg-red-600 flex">
             <ul className='flex p-0'>

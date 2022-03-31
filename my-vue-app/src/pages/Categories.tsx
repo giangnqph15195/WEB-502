@@ -1,8 +1,10 @@
+
 import React, {useEffect, useState} from 'react'
 import {NavLink ,useParams} from 'react-router-dom'
 import { getall, read } from '../api/categories'
 import { TypeCategories } from '../type/categories'
 import { TypeProduct } from '../type/products'
+import Products from './Admin/Products'
  
 type Props = {}
 
@@ -42,6 +44,13 @@ const Categories = (props: Props) => {
                 </NavLink>
           </div>
             })}
+
+
+            {/* {categoriesPD.map((item) => {
+              return <div>
+                {item.name}
+              </div>
+            })} */}
                 </div>
 
               

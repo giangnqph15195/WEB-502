@@ -17,22 +17,17 @@ export const isAuthenticate = () =>{
     // }
     const result = JSON.parse(localStorage.getItem('user') as string);
 
-    const check = () => {
-        if(result.user.role==0){
-            <NavLink to={`/admin`}>Admin</NavLink>
-        }
-    }
     if(localStorage.getItem('user')){
         return<div className=""> 
-        <NavLink className='headeracc text-white text-3xl bg-red-800 rounded-md px-2 py-2 hover:bg-black hover:text-orange-700' to={`/`}><button onClick={()=> localStorage.removeItem('user')}><i className="fa-solid fa-arrow-right-from-bracket text-red"></i></button></NavLink>
-        <NavLink to={`/admin`}>Admin</NavLink>
-        {check()}
+        <NavLink className="text-sm text-gray-700" onClick={()=> localStorage.removeItem('user')} to="/">Đăng Xuất</NavLink>
+
         </div>
     }
     else{
         return (
             <div className="">
-                <NavLink className='headeracc text-white text-3xl bg-red-800 rounded-md px-2 py-2 hover:bg-black hover:text-orange-700' to={'/signin'}><i className="fas fa-user header__acc-icon text-white"></i></NavLink>
+                <NavLink className="text-sm text-gray-700 "  to={'/signin'}>Đăng nhập</NavLink> <br />
+                <NavLink className="text-sm text-gray-700 "  to={'/signin'}>Đăng ký</NavLink>
             </div>
         ) 
         
@@ -46,5 +41,17 @@ export const usertk = () => {
         return JSON.parse(localStorage.getItem('user') as string)
     } else {
         return false
+    }
+}
+
+
+export const check = () => {
+    const checker = JSON.parse(localStorage.getItem('user') as string)
+    if(checker){
+       if(checker.user.role == 0){
+        return <div> <NavLink to={`/admin`} className="text-sm text-gray-700">Admin</NavLink></div>
+       }
+    }else{
+        ""
     }
 }

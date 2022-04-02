@@ -17,13 +17,23 @@
     margin-bottom: 10px;
 }
 .validater {
-    top: 65px;
-    right: 135px;
-    display: block;
+    top: 62px;
+    right: 135px; 
+    display: none;
 }
 .headeracc:hover .validater{
     display: block;
     /* background-color: aqua; */
+}
+.validater::after{
+    position: absolute;
+    top: -20px;
+    left: 0;
+    /* content: ""; */
+    width: 100%;
+    height: 100%;
+    background-color: antiquewhite;
+    opacity: 0;
 }
 .form-label{
     font-weight: 600;

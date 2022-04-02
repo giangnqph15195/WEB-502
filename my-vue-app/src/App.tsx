@@ -30,6 +30,8 @@ import { adduser, edituser, listuser, removeuser, signup } from './api/User'
 import AddUser from './pages/Admin/AddUser'
 import EditUser from './pages/Admin/EditUser'
 import Card from './pages/Card'
+import toastr from 'toastr'
+import 'toastr/build/toastr.min.css'
 // import { add } from './api/products'
 
 function App() {
@@ -60,8 +62,13 @@ function App() {
   },[])
 
   const onAddPd = async (product : TypeProduct) =>{
-    const {data} = await create(product)
+    try {
+      const {data} = await create(product)
     setproducts([...products, data])
+    toastr.success("Bạn thêm sản phẩm thành công")
+    } catch (error) {
+      toastr.error("Bạn thêm sản phẩm không thành công")
+    }
   }
 
   const RemoveItem = async (_id:number)=> {

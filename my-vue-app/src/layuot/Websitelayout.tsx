@@ -1,6 +1,6 @@
 import React, { isValidElement } from 'react'
 import {NavLink, Outlet} from 'react-router-dom'
-import { isAuthenticate } from '../utils/localSgate'
+import { check, isAuthenticate } from '../utils/localSgate'
 type Props = {}
 
 const Websitelayout = (props: Props) => {
@@ -22,21 +22,22 @@ const Websitelayout = (props: Props) => {
                 </NavLink>
                 </div>
                 <div className='mt-2 '>
-                {/* <a href="" className='headeracc text-white text-3xl bg-red-800 rounded-md px-2 py-2 hover:bg-black hover:text-orange-700'> */}
-                {/* <i className="fas fa-user header__acc-icon"></i> */}
-                {isAuthenticate()}
+                <a href="" className='headeracc text-white text-3xl bg-red-800 rounded-md px-2 py-2 hover:bg-black hover:text-orange-700'> 
+                  <i className="fas fa-user header__acc-icon"></i>
+                {/* {isAuthenticate()} */}
+                <div className='validater bg-white rounded-md absolute'>
+                  <ul className='pr-2 pl-2 mb-[10px]'>
+                    {isAuthenticate()}
+                    {check()}
+                  </ul>
+                </div> 
 
-                {/* </a> */}
+                </a>
                 </div>
                 
-                {/* <div className='validater bg-white p-2 rounded-md absolute'>
-                  <ul className='pr-2'>
-                    
-                  </ul>
-                </div> */}
      </div>
             <div className="bg-red-600 flex">
-            <ul className='flex p-0'>
+            <ul className='flex p-0 mb-[0px]'>
           <li className='menu_list'><NavLink className='text-white hover:text-orange-500'  to='/'>Home Page</NavLink></li>
           <li className='menu_list'><NavLink className='text-white hover:text-orange-500' to='/products'>Products Page</NavLink></li>
           <li className='menu_list'><NavLink className='text-white hover:text-orange-500' to='/blog'>Blog Page</NavLink></li>

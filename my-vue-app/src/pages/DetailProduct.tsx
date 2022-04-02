@@ -7,6 +7,9 @@ import { isAuthenticate, usertk } from '../utils/localSgate';
 import { TypeUser } from '../type/user'
 import { findone } from '../api/User'
 import { Carousel } from 'antd';
+import { TypeSize } from '../type/size'
+import axios from 'axios'
+// import { size } from '../utils/size'
 
 // const { Meta } = Card;
 
@@ -20,6 +23,7 @@ const DetailProduct = (props: Props) => {
   const [user, setuser] = useState<TypeUser>();
   const [count, setcount] = useState(1)
   const [products, setproducts] = useState<TypeProduct>()
+  const [sizess, setsize] = useState<TypeSize[]>([])
 
   useEffect(() => {
     const getOne = async () => {
@@ -37,6 +41,14 @@ const DetailProduct = (props: Props) => {
     getOne();
   }, [id])
 
+  useEffect(()=>{
+    const getSZ = async () => {
+      const {data} = await axios.get("http://localhost:3001/api/size")
+      setsize(data)
+    }
+    getSZ()
+  },[])
+
   const onSubmit: SubmitHandler<TypeForm> = data => {
     const newObject = {
       ...data,
@@ -45,6 +57,22 @@ const DetailProduct = (props: Props) => {
     };
     console.log(newObject)
   }
+
+//   const size = (cate: String) => {
+//     if(cate == "62348a61b370bb70f7be55bc"){
+//         return <div>
+//             <select name="" id="">
+//               {sizess.map((item)=> {
+//                 return <option value={`${item._id}`}>{item.name}: {item.gia}</option>
+//               })}
+//             </select>
+//         </div>
+//     }else{
+//         return <div>
+//             {products?.price}
+//         </div>
+//     }
+// }
 
   return (
     
@@ -58,7 +86,7 @@ const DetailProduct = (props: Props) => {
         <h2 className='text-3xl'>{products?.name}</h2>
         <p>{products?.description}</p>
         <h3 className='text-gray-500 text-xl mt-10'>Giá Sản phẩm </h3>
-        <h3 className='text-orange-500 text-xl font-bold'>{products?.price}</h3>
+        <h3 className='text-orange-500 text-xl font-bold'>{products?.price}</h3> 
         <div className='flex my-4'>
 
           <form action="" onSubmit={handleSubmit(onSubmit)}>

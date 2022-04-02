@@ -6,6 +6,7 @@ import { TypeProduct } from '../../type/products';
 import { TypeCategories } from '../../type/categories';
 import { getall } from '../../api/categories';
 
+
 type PropsAdd = {
   onAdd : (product : Form) => void
 }

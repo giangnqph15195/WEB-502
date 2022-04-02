@@ -2,6 +2,9 @@ import React from 'react'
 import {NavLink , useNavigate} from 'react-router-dom'
 import {useForm , SubmitHandler} from 'react-hook-form'
 import { signup } from '../api/User'
+// import {toastr} from 'toastr'
+// import toastr from 'toastr'
+import "toastr/build/toastr.min.css"
 type Props = {}
 type FormSignUp = {
     name: string,
@@ -13,8 +16,15 @@ const SignUp = (props: Props) => {
     const {register, handleSubmit, formState: {errors}} = useForm<FormSignUp>()
     const navigate = useNavigate()
     const onSingUp: SubmitHandler<FormSignUp> = data => {
-        signup(data)
-        // navigate('/signin')F
+        try {
+            signup(data)
+            // toastr.succces('up thanh cong')
+            navigate('/signin')
+        } catch (error) {
+            
+        }
+   
+       
         console.log(data)
     }
   return (

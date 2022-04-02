@@ -4,7 +4,8 @@ import { NavLink } from 'react-router-dom';
 import { TypeUser } from '../../type/user';
 
 type Props = {
-  user: TypeUser[]
+  user: TypeUser[],
+  Removeuser: (_id : number) => void
 }
 
 const Users = (props: Props) => {
@@ -31,7 +32,7 @@ const Users = (props: Props) => {
                <th scope="col">{item.email}</th>
                <th>{item.role}</th>
                <th scope="col"><NavLink to={`/admin/users/${item._id}/edit`}><i className="fa-solid fa-pen-to-square text-black"></i></NavLink></th>
-               <th className='w-2' scope="col"><button><i className="fa-solid fa-trash"></i></button></th>
+               <th className='w-2' scope="col"><button onClick={()=> props.Removeuser(item._id)}><i className="fa-solid fa-trash"></i></button></th>
              </tr>
              })}
             

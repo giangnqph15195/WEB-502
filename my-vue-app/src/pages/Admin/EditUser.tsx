@@ -1,10 +1,13 @@
 // import { Form } from 'antd'
 import React, { useEffect } from 'react'
 import {useForm,SubmitHandler} from 'react-hook-form'
-import {useParams} from 'react-router-dom'
+import {useParams, useNavigate} from 'react-router-dom'
 import { findone } from '../../api/User'
+import { TypeUser } from '../../type/user'
 
-type Props = {}
+type Props = {
+  editUser : (user : TypeUser) => void
+}
 type TypeForm = {
   name:string
   email:string
@@ -15,6 +18,7 @@ type TypeForm = {
 const EditUser = (props: Props) => {
   const {register, handleSubmit, formState:{errors} ,reset} = useForm<TypeForm>()
   const {id} = useParams()
+  const navigate = useNavigate()
   useEffect(()=>{
     const getone = async () => {
       const {data} = await findone(id)
@@ -23,6 +27,8 @@ const EditUser = (props: Props) => {
     getone()
   },[])
   const onSubmit: SubmitHandler<TypeForm> = data => {
+    props.editUser(data)
+    navigate('/admin/users')
     console.log(data)
   }
   return (

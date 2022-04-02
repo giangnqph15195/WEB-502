@@ -31,6 +31,9 @@
 .navbar{
     @apply ml-8;
 }
+.table-cart{
+    width: 1000;
+}
 /* .news {
     @apply my-12
 }

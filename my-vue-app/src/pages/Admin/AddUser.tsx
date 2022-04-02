@@ -15,7 +15,7 @@ const AddUser = (props: Props) => {
     const navigate = useNavigate()
     const onSubmit : SubmitHandler<Form> = data => {
         props.onUser(data)
-        // navigate('/admin/users')
+        navigate('/admin/users')
         console.log(data)
     }
   return (

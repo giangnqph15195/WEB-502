@@ -14,7 +14,7 @@ const Websitelayout = (props: Props) => {
                 <p className="my-4 mx-8 text-white">Pizza ngon - Giá rẻ - Vận chuyển tận nhà</p>
                 
                 <div className='ml-60'>
-                <NavLink to='card'>
+                <NavLink to='cart'>
                 <button className='bg-red-800 ml-96 px-4 rounded-md py-3 text-white mr-2 hover:bg-black hover:text-orange-700'>
                 <i className="fa-solid fa-cart-arrow-down mr-2"></i> 
                 Giỏ Hàng

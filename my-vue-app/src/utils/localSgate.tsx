@@ -25,6 +25,7 @@ export const isAuthenticate = () =>{
     if(localStorage.getItem('user')){
         return<div className=""> 
         <NavLink className='headeracc text-white text-3xl bg-red-800 rounded-md px-2 py-2 hover:bg-black hover:text-orange-700' to={`/`}><button onClick={()=> localStorage.removeItem('user')}><i className="fa-solid fa-arrow-right-from-bracket text-red"></i></button></NavLink>
+        <NavLink to={`/admin`}>Admin</NavLink>
         {check()}
         </div>
     }
@@ -39,8 +40,11 @@ export const isAuthenticate = () =>{
    
 }
 
-// export const usertk = () => {
-//     if(localStorage.getItem('user')){
-        
-//     }
-// }
+export const usertk = () => {
+    // if(typeof window === "undefined") return;
+    if(localStorage.getItem('user')){
+        return JSON.parse(localStorage.getItem('user') as string)
+    } else {
+        return false
+    }
+}

@@ -26,9 +26,10 @@ import Users from './pages/Admin/Users'
 import Categories from './pages/Categories'
 import EditCategory from './pages/Admin/EditCategory'
 import Item from 'antd/lib/list/Item'
-import { addus, listuser, signup } from './api/User'
+import { adduser, edituser, listuser, removeuser, signup } from './api/User'
 import AddUser from './pages/Admin/AddUser'
 import EditUser from './pages/Admin/EditUser'
+import Card from './pages/Card'
 // import { add } from './api/products'
 
 function App() {
@@ -74,7 +75,7 @@ function App() {
 
   const onUpdateItem = async (product: TypeProduct)=>{
     const {data} = await update(product)
-    setproducts(products.map(item=> item._id == data._id ? data : item))
+    setproducts(products.map(item => item._id == data._id ? data : item))
   }
 
   const AddCategory = async (category: TypeCategories) => {
@@ -96,25 +97,45 @@ function App() {
   
   }
   const onAddUser = async (userr: TypeUser) => {
-    const {data} = await addus(userr)
+    const {data} = await adduser(userr)
     setuser([...users, data])
+  }
+
+  const onEditUser = async (user : TypeUser) => {
+    const {data: newus} = await edituser(user)
+    setuser(users.map(item => item._id == newus._id ? newus : item))
+  }
+
+  const RemoveUS = async (_id:number) => {
+    const confirm = window.confirm("Bạn có muốn xóa tài khoản")
+    if(confirm){
+      removeuser(_id)
+    setuser(users.filter(item => item._id !== _id))
+    }
   }
   return (
     <div className="App">
      <Routes>
-        <Route path='/' element={<Websitelayout />}>
+      <Route path='/' element={<Websitelayout />}>
+
           <Route index element={<HomePage product={products}/>}></Route>
           <Route path='products'>
             <Route index element={<ListProducts/>}></Route>
             <Route path=':id' element={<DetailProduct/>}></Route>
           </Route>
+
           <Route path='category/:slug' element={<Categories/>}></Route>
-          <Route path='/blog' element={<BlogPage/>}></Route>
-          
-        </Route>
+          <Route path='blog' element={<BlogPage/>}></Route>
+          <Route path='cart' element={<Card/>}></Route>
+
+      </Route>
+
         <Route path='signin' element={<SignIn />}></Route>
           <Route path='signup' element={<SignUp />}></Route>
           
+
+
+
 
           <Route path='admin' element={<Adminlayout/>}>
             <Route index element={<Products product={products} onRemove={RemoveItem}/>}></Route>
@@ -126,9 +147,9 @@ function App() {
               <Route path=':id/edit' element={<EditCategory onUpdatect={UpdateCaTe}/>}></Route>
             </Route>
             <Route path='users'>
-              <Route index element={<Users user={users}/>  }></Route>
-              <Route path='add' element={<AddUser onUser={onAddUser} />}></Route>
-              <Route path=':id/edit' element={<EditUser/>}></Route>
+              <Route index element={<Users user={users} Removeuser={RemoveUS}/>  }></Route>
+              <Route path='add' element={<AddUser onUser={onAddUser}  />}></Route>
+              <Route path=':id/edit' element={<EditUser editUser={onEditUser}/>}></Route>
             </Route>
           </Route>
        </Routes>

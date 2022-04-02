@@ -9,7 +9,7 @@ export const get = (_id:string | undefined) =>{
     const url = `/categorys/${_id}`
     return instance.get(url)
 }
-export const read = (slug : string) => {
+export const read = (slug : string|undefined) => {
     const url = `/category/${slug}`
     return instance.get(url)
 }

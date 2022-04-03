@@ -1,11 +1,29 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 // import { Table, Tag, Space } from 'antd';
+import {useParams} from 'react-router-dom'
+import { read } from '../api/cart'
+import { TypeCart } from '../type/cart'
 
-type Props = {}
+type Props = {
+  onRemoveCR: (_id : number) => void
+  id: (id:number ) => void
+}
 
 
 
 const Card = (props: Props) => {
+  const [cart, setcart] = useState<TypeCart[]>([])
+  const {id} = useParams()
+  // props.id(id)
+
+  useEffect(()=>{
+    const getCart = async () => {
+      const {data} = await read(id)
+      setcart(data)
+    }
+    getCart()
+  },[])
+  console.log('quan trong',id)
   return (
     <div className='my-24'>
       <div className='flex max-w-6xl m-auto mt-56'>
@@ -22,33 +40,17 @@ const Card = (props: Props) => {
             </tr>
           </thead>
           <tbody className=''>
-            <tr>
-              <th scope="row"><img src="https://res.cloudinary.com/dkrifqhuk/image/upload/v1645535451/asm/mja0kw8wpfovfrfupdr7.jpg" alt="" /></th>
-              <td className='text-center py-4'>Mark</td>
-              <td className='text-center py-4'>Otto</td>
-              <td className='text-center py-4'>@mdo</td>
-              <td className='text-center py-4'>@mdo</td>
-
-              <td className='text-center'><button><i className="fa-solid fa-trash-can"></i></button></td>
+            {cart.map((item)=> {
+              return <tr>
+              <th scope="row"><img src={`${item.image}`} alt="" /></th>
+              <td className='text-center py-4'>{item.name}</td>
+              <td className='text-center py-4'>{item.price}</td>
+              <td className='text-center py-4'>{item.quantiny} dsadas </td>
+              <td className='text-center py-4'>{item.quantiny * item.price}</td>
+              <td className='text-center'><button onClick={()=> {props.onRemoveCR(item._id)}}><i className="fa-solid fa-trash-can"></i></button></td>
             </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td className='text-center'>@mdo</td>
-              <td><i className="fa-solid fa-trash-can"></i></td>
-
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td className='text-center'>@mdo</td>
-              <td><i className="fa-solid fa-trash-can"></i></td>
-
-            </tr>
+            })}
+            
             </tbody>
         </table>
       </div>

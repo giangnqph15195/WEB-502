@@ -9,13 +9,19 @@ import { findone } from '../api/User'
 import { Carousel } from 'antd';
 import { TypeSize } from '../type/size'
 import axios from 'axios'
+import toastr from 'toastr'
+import 'toastr/build/toastr.min.css'
+import { TypeCart } from '../type/cart'
 // import { size } from '../utils/size'
 
 // const { Meta } = Card;
 
-type Props = {}
+type Props = {
+  onAddCart : (productCR: TypeForm) => void
+}
 type TypeForm = {
-  sl: number
+  quantiny: number
+  image: string
 }
 const DetailProduct = (props: Props) => {
   const { id } = useParams()
@@ -50,12 +56,22 @@ const DetailProduct = (props: Props) => {
   },[])
 
   const onSubmit: SubmitHandler<TypeForm> = data => {
+   try {
     const newObject = {
       ...data,
-      id_tk: user._id,
-      id_sp: id,
+      name:products?.name,
+      user: user._id,
+      // id_sp: id,
+      price: products?.price,
+      description: products?.description,
+      order:"6249078b4bd49f2f2b92f8e6"
     };
+    props.onAddCart(newObject)
     console.log(newObject)
+    toastr.success("Thêm giỏ hàng thành công")
+   } catch (error) {
+     toastr.error("Bạn phải đăng nhập")
+   }
   }
 
 //   const size = (cate: String) => {
@@ -90,8 +106,9 @@ const DetailProduct = (props: Props) => {
         <div className='flex my-4'>
 
           <form action="" onSubmit={handleSubmit(onSubmit)}>
+            <input type="hidden" value="https://res.cloudinary.com/dkrifqhuk/image/upload/v1645928802/asm/cwsepyemmxoba5llzp4s.jpg" {...register('image')} />
             <span onClick={() => setcount(count - 1)} className='bg-orange-500 p-2'><i className="fa-solid fa-minus text-lg text-white"></i></span>
-            <input className='border-2 border-slate-400 w-10 text-center mx-1' min="1" value={`${count}`} {...register('sl')} />
+            <input className='border-2 border-slate-400 w-10 text-center mx-1' min="1" value={`${count}`} {...register('quantiny')} />
             <span onClick={() => setcount(count + 1)} className='bg-orange-500 p-2'><i className="fa-solid fa-plus text-lg text-white"></i></span>
             <div>
             <button className='bg-orange-500 px-4 py-2 text-white text-lg mt-20'>Thêm vào giỏ hàng</button>

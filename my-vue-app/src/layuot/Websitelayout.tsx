@@ -1,9 +1,19 @@
-import React, { isValidElement } from 'react'
+import React, { isValidElement, useState } from 'react'
 import {NavLink, Outlet} from 'react-router-dom'
 import { check, isAuthenticate } from '../utils/localSgate'
 type Props = {}
 
 const Websitelayout = (props: Props) => {
+  const [signout, setsinguot] = useState(localStorage.getItem('user'))
+  // setsinguot(signout)
+
+  const addressUser = () => {
+    if(localStorage.getItem('user')){
+      return JSON.parse(localStorage.getItem('user')as string).user._id
+    }
+  }
+
+
   return (
     <div>
     <header>
@@ -14,7 +24,7 @@ const Websitelayout = (props: Props) => {
                 <p className="my-4 mx-8 text-white">Pizza ngon - Giá rẻ - Vận chuyển tận nhà</p>
                 
                 <div className='ml-60'>
-                <NavLink to='cart'>
+                <NavLink to={`cart/${addressUser()}`}>
                 <button className='bg-red-800 ml-96 px-4 rounded-md py-3 text-white mr-2 hover:bg-black hover:text-orange-700'>
                 <i className="fa-solid fa-cart-arrow-down mr-2"></i> 
                 Giỏ Hàng

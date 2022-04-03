@@ -32,12 +32,15 @@ import EditUser from './pages/Admin/EditUser'
 import Card from './pages/Card'
 import toastr from 'toastr'
 import 'toastr/build/toastr.min.css'
+import { TypeCart } from './type/cart'
+import { addCard, deleteCart } from './api/cart'
 // import { add } from './api/products'
 
 function App() {
   const [products, setproducts] = useState<TypeProduct[]>([])
   const [categories,setcategories] = useState<TypeCategories[]>([])
   const [users, setuser] = useState<TypeUser[]>([])
+  const [carts, setcart] = useState<TypeCart[]>([])
   useEffect(()=>{
     const getCT = async () => {
       const {data} = await getall()
@@ -120,6 +123,20 @@ function App() {
     setuser(users.filter(item => item._id !== _id))
     }
   }
+
+
+  const AddCart = async (productCR:TypeCart)=> {
+    const addCr = async () => {
+      const {data} = await addCard(productCR)
+      setcart([...carts,data])
+    }
+    addCr()
+  }
+
+  const RemoveCart = async (_id:number) => {
+    const RemoveCart = await deleteCart(_id)
+    setcart(carts.filter(item => item._id !== _id))
+  }
   return (
     <div className="App">
      <Routes>
@@ -128,12 +145,12 @@ function App() {
           <Route index element={<HomePage product={products}/>}></Route>
           <Route path='products'>
             <Route index element={<ListProducts/>}></Route>
-            <Route path=':id' element={<DetailProduct/>}></Route>
+            <Route path=':id' element={<DetailProduct onAddCart={AddCart}/>}></Route>
           </Route>
 
           <Route path='category/:slug' element={<Categories/>}></Route>
           <Route path='blog' element={<BlogPage/>}></Route>
-          <Route path='cart' element={<Card/>}></Route>
+          <Route path='cart/:id' element={<Card onRemoveCR={RemoveCart}/>}></Route>
 
       </Route>
 

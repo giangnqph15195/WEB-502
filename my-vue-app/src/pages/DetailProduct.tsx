@@ -21,7 +21,7 @@ type Props = {
 }
 type TypeForm = {
   quantiny: number
-  image: string
+  // image: string
 }
 const DetailProduct = (props: Props) => {
   const { id } = useParams()
@@ -61,10 +61,11 @@ const DetailProduct = (props: Props) => {
       ...data,
       name:products?.name,
       user: user._id,
+      image: products?.image,
       // id_sp: id,
       price: products?.price,
       description: products?.description,
-      order:"6249078b4bd49f2f2b92f8e6"
+      // order:""
     };
     props.onAddCart(newObject)
     console.log(newObject)
@@ -96,7 +97,7 @@ const DetailProduct = (props: Props) => {
       <div className='flex my-16 ml-36'>
       
       <div>
-        <img width={600} src="https://res.cloudinary.com/dkrifqhuk/image/upload/v1645928802/asm/cwsepyemmxoba5llzp4s.jpg" alt="" />
+        <img width={600} src={`${products?.image}`} alt="" />
       </div>
       <div className='ml-20'>
         <h2 className='text-3xl'>{products?.name}</h2>
@@ -106,7 +107,7 @@ const DetailProduct = (props: Props) => {
         <div className='flex my-4'>
 
           <form action="" onSubmit={handleSubmit(onSubmit)}>
-            <input type="hidden" value="https://res.cloudinary.com/dkrifqhuk/image/upload/v1645928802/asm/cwsepyemmxoba5llzp4s.jpg" {...register('image')} />
+            {/* <input type="hidden" value={`${products?.image}`} {...register('image')} /> */}
             <span onClick={() => setcount(count - 1)} className='bg-orange-500 p-2'><i className="fa-solid fa-minus text-lg text-white"></i></span>
             <input className='border-2 border-slate-400 w-10 text-center mx-1' min="1" value={`${count}`} {...register('quantiny')} />
             <span onClick={() => setcount(count + 1)} className='bg-orange-500 p-2'><i className="fa-solid fa-plus text-lg text-white"></i></span>

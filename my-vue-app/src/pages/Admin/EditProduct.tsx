@@ -4,6 +4,8 @@ import {useNavigate, useParams} from 'react-router-dom'
 import { getall } from '../../api/categories'
 import { getone } from '../../api/products'
 import { TypeCategories } from '../../type/categories'
+import { TypeProduct } from '../../type/products'
+import axios from 'axios'
 type PropsUpdate = {
   onUpdate: (product : Form)=>void
 }
@@ -17,11 +19,14 @@ type Form = {
 const EditProduct = (props: PropsUpdate) => {
   const {register, handleSubmit ,formState:{errors}, reset} = useForm<Form>()
   const [category, setcategory] = useState<TypeCategories[]>([])
+  const [product, setproduct] = useState<TypeProduct[]>([])
+
   const navigate = useNavigate();
   const {id} = useParams()
   useEffect(()=>{
     const getOne = async () => {
       const {data} = await getone(id)
+      setproduct(data)
       reset(data)
     }
     getOne()
@@ -34,11 +39,29 @@ const EditProduct = (props: PropsUpdate) => {
     }
     getallCT()
   },[])
+  let imageUpdate = ""
+  const onSubmit : SubmitHandler<Form> = async data => {
+    if(data.image[0] != 'h'){
+      const file = data.image[0]
+      const formData = new FormData()
 
-  const onSubmit : SubmitHandler<Form> = data => {
+      formData.append("file", file)
+      formData.append("upload_preset", "mi59v8ju")
+
+      const {data : newimage} = await axios({
+        url: "https://api.cloudinary.com/v1_1/dkrifqhuk/image/upload",
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-formendcoded",
+        }, data: formData,
+      })
+      imageUpdate = newimage.url
+      data.image = imageUpdate
+      console.log(data.image)
+    }
+    console.log(data)
     props.onUpdate(data)
     navigate('/admin')
-    console.log(data)
   }
   return (
     <div> 
@@ -57,8 +80,13 @@ const EditProduct = (props: PropsUpdate) => {
       <input type="text" className='form-control' {...register('name')} />
     </div>
     <div className="mb-3">
+      <label  className="form-label">Image View:</label>
+      {/* <input type="file" className='form-control' {...register('image')} /> */}
+      <img src={`${product.image}`} alt="" />
+    </div>
+    <div className="mb-3">
       <label  className="form-label">Image Product:</label>
-      {/* <input type="text" className='form-control' {...register('img')} /> */}
+      <input type="file" {...register('image')} />
     </div>
     <div className="mb-3">
       <label  className="form-label">Price:</label>
@@ -68,7 +96,7 @@ const EditProduct = (props: PropsUpdate) => {
       <label  className="form-label">Details:</label>
       <input type="text" className='form-control' {...register('description')} />
     </div>
-    <button type="submit" className="btn btn-primary">Submit</button>
+    <button type="submit" className="btn btn-primary text-black hover:text-white">Submit</button>
   </form></div>
   )
 }

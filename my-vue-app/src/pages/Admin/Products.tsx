@@ -28,7 +28,7 @@ const Products = (props: PropsList) => {
       return <tr  key={index}>
       <th className='w-10' scope="row">{index + 1}</th>
       <td className='w-52'>{item.name}</td>
-      {/* <td><img width={50} src={`${item.img}`} alt="" /></td>  */}
+      <td><img width={50} src={`${item.image}`} alt="" /></td> 
       <td className='w-72'>{item.price}</td>
       <td className='w-72'>{item.description}</td>
       <td className='w-2'><NavLink to={`/admin/${item._id}/edit`}><i className="fa-solid fa-pen-to-square text-black"></i></NavLink></td>

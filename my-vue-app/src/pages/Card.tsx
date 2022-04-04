@@ -45,7 +45,7 @@ const Card = (props: Props) => {
               <th scope="row"><img src={`${item.image}`} alt="" /></th>
               <td className='text-center py-4'>{item.name}</td>
               <td className='text-center py-4'>{item.price}</td>
-              <td className='text-center py-4'>{item.quantiny} dsadas </td>
+              <td className='text-center py-4'>{item.quantiny}</td>
               <td className='text-center py-4'>{item.quantiny * item.price}</td>
               <td className='text-center'><button onClick={()=> {props.onRemoveCR(item._id)}}><i className="fa-solid fa-trash-can"></i></button></td>
             </tr>

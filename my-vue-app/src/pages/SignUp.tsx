@@ -2,8 +2,7 @@ import React from 'react'
 import {NavLink , useNavigate} from 'react-router-dom'
 import {useForm , SubmitHandler} from 'react-hook-form'
 import { signup } from '../api/User'
-// import {toastr} from 'toastr'
-// import toastr from 'toastr'
+import toastr from 'toastr'
 import "toastr/build/toastr.min.css"
 type Props = {}
 type FormSignUp = {
@@ -18,9 +17,10 @@ const SignUp = (props: Props) => {
     const onSingUp: SubmitHandler<FormSignUp> = data => {
         try {
             signup(data)
-            // toastr.succces('up thanh cong')
+            toastr.succces('Đăng ký thành công thành công')
             navigate('/signin')
         } catch (error) {
+            toastr.error("Đăng ký không thành công")
             
         }
    

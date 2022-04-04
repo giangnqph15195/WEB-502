@@ -27,7 +27,7 @@ export const isAuthenticate = () =>{
         return (
             <div className="">
                 <NavLink className="text-sm text-gray-700 "  to={'/signin'}>Đăng nhập</NavLink> <br />
-                <NavLink className="text-sm text-gray-700 "  to={'/signin'}>Đăng ký</NavLink>
+                <NavLink className="text-sm text-gray-700 "  to={'/signup'}>Đăng ký</NavLink>
             </div>
         ) 
         

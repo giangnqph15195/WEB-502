@@ -50,3 +50,68 @@
 .iteam h2 {
     @apply text-lg font-bold
 } */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.trip{
+    position: relative; /* Ä‘á»‹nh vá»‹ vá»‹ trÃ­ cá»§a khá»‘i div trip */
+    width: fit-content; /* Ä‘á»™ rá»™ng cá»§a khá»‘i fit Ä‘Ãºng ná»™i dung bÃªn trong */
+    overflow: hidden; /* nhá»¯ng thÃ nh pháº§n nÃ o náº±m ngoÃ i pháº¡m vi hiá»ƒn thá»‹ cá»§a khá»‘i sáº½ bá»‹ áº©n Ä‘i */
+}
+.info{
+    position: absolute; /* Ä‘á»‹nh vá»‹ vá»‹ trÃ­ cá»§a khá»‘i info so vá»›i vá»‹ trÃ­ cá»§a khá»‘i trip */
+    bottom: 0;  /* vá»‹ trÃ­ cá»§a khá»‘i info sáº½ náº±m sÃ¡t phÃ­a dÆ°á»›i */
+    background-color: #fff;
+    width: 100%;    /* Ä‘á»™ rá»™ng cá»§a khá»‘i info = Ä‘á»™ rá»™ng cá»§a khá»‘i trip */
+    transform: translateY(150px); /* khá»‘i info di chuyá»ƒn theo trá»¥c Y (tháº³ng Ä‘á»©ng) - lÃ¹i xuá»‘ng phÃ­a dÆ°á»›i 120px */
+    transition: ease-in-out 1s; 
+    /* ease-in-out: tÄƒng Ä‘á»™ mÆ°á»£t cho animation 
+        1s: thá»i gian diá»…n ra animation
+    */
+    animation-name: fadeOut;    /* tÃªn cá»§a animation Ä‘Æ°á»£c Ä‘á»‹nh nghÄ©a bá»Ÿi @keyframes bÃªn dÆ°á»›i*/
+    animation-duration: 1s;     /* thá»i gian diá»…n ra animation Ä‘Ã³*/
+}
+.info h2, .info p{
+    display: block;
+    width: 100%; 
+    text-align: center;
+    padding: 10px 0;
+}
+.info button{
+    display: block;
+    background-color: #000;
+    color: #fff;
+    padding: 10px 0;
+    width: 100%;
+}
+.trip:hover .info{
+    /* khi hover vÃ o khá»‘i trip thÃ¬ thay Ä‘á»•i thuá»™c tÃ­nh css cá»§a khá»‘i info */
+    transform: translateY(0); /* di chuyá»ƒn Ä‘i lÃªn, trá»Ÿ láº¡i vá»‹ trÃ­ ban Ä‘áº§u */
+    transition: ease-in-out 1s; 
+    /* ease-in-out: tÄƒng Ä‘á»™ mÆ°á»£t cho animation 
+        1s: thá»i gian diá»…n ra animation
+    */
+    animation-name: fadeIn;     /* tÃªn cá»§a animation Ä‘Æ°á»£c Ä‘á»‹nh nghÄ©a bá»Ÿi @keyframes bÃªn dÆ°á»›i*/
+    animation-duration: 1s;     /* thá»i gian diá»…n ra animation Ä‘Ã³*/
+}
+
+@keyframes fadeIn{  /* Ä‘á»‹nh nghÄ©a  animation*/
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+@keyframes fadeOut{
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 0;
+    }
+}

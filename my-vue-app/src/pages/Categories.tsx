@@ -74,7 +74,7 @@ const Categories = (props: Props) => {
             <Card
               hoverable
               style={{ width: 230 }}
-              cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+              cover={<img alt="example" src={`${item.image}`} />}
             >
               <Meta className='text-center' title={`${item.name}`} description={`${item.price}`} />
               <button className='bg-orange-600 p-2 rounded-xl mt-2 ml-12'>Mua Hàng</button>

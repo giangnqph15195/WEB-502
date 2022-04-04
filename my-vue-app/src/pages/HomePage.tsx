@@ -65,15 +65,20 @@ const HomePage = (props: Props) => {
                 <div className='m-auto max-w-7xl grid grid-cols-4 gap-4'>
                 
                   {props.product.map((item , index)=> {
-                    return<NavLink to={`/products/${item._id}`}>
-                    <Card
-                    hoverable
-                    style={{ width:230}}
-                    cover={<img alt="example" src={`${item.image}`} />}
-                  >
-                    <Meta className='text-center' title={`${item.name}`} description={`${item.price}`} />
-                    <button className='bg-orange-600 p-2 rounded-xl mt-2 ml-12'>Mua Hàng</button>
-                  </Card></NavLink>
+                    return <div className="container">
+                    <div className="trip">
+                        <div className="item">
+                           <img width="1000px" src={`${item.image}`} alt="" />
+                           <h2>BANFF NATIONAL PARK</h2>
+                            <p>$546.00</p>
+                        </div>
+                        <div className="info">
+                            <h2>{item.description}</h2>
+                            <p>$546.00</p>
+                            <NavLink to={`/products/${item._id}`}><button>Book this tour</button></NavLink>
+                        </div>
+                    </div>
+                </div>
                   })}
                   
                 {/* <Card

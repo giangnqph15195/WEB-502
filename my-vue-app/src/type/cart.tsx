@@ -6,5 +6,6 @@ export type TypeCart = {
     description:string
     user:string
     quantiny: number,
+    size:number
     order:string
 }

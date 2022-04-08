@@ -15,19 +15,21 @@ const Order = (props: Props) => {
         getorder()
     },[])
     
-    // const Status = () => {
-    //     if(order.status == 0){
-    //       return  "Chờ xác nhận"
-    //     }else if(order.status == 1){
-    //         return "Đã xác nhận"
-    //     }else if(order.status == 2){
-    //         return "Đang giao"
-    //     }else if(order.status == 3){
-    //         return "Đã nhận"
-    //     }else{
-    //         return "Hủy Đơn"
-    //     }
-    // }
+    const Status = (status: number) => {
+        if(status == 0){
+          return  "Chờ xác nhận"
+        }else if(status == 1){
+            return "Đã xác nhận"
+        }else if(status == 2){
+            return "Đang giao"
+        }else if(status == 3){
+            return "Đã giao"
+        }else if(status == 4){
+            return "Đã nhận"
+        }else{
+            return "Hủy Đơn"
+        }
+    }
     return (
         <div>
             <h1 className='text-center font-bold text-lg'>Order</h1>
@@ -54,7 +56,7 @@ const Order = (props: Props) => {
                             <td scope="col">{item.address}</td>
                             <td scope="col">{item.phone}</td>
                             <td scope="col">{item.note}</td>
-                            <td scope="col">{item.status}</td>
+                            <td scope="col">{Status(item.status)}</td>
                             <td width={8} scope="col"><NavLink to={`/admin/order/${item._id}`}><i className="fa-solid fa-plane-departure text-black text-lg"></i></NavLink></td>
                         </tr>
                         })}

@@ -23,6 +23,7 @@ type Props = {
 }
 type TypeForm = {
   quantiny: number
+  size: string
   // image: string
 }
 const DetailProduct = (props: Props) => {
@@ -77,21 +78,21 @@ const DetailProduct = (props: Props) => {
    }
   }
 
-//   const size = (cate: String) => {
-//     if(cate == "62348a61b370bb70f7be55bc"){
-//         return <div>
-//             <select name="" id="">
-//               {sizess.map((item)=> {
-//                 return <option value={`${item._id}`}>{item.name}: {item.gia}</option>
-//               })}
-//             </select>
-//         </div>
-//     }else{
-//         return <div>
-//             {products?.price}
-//         </div>
-//     }
-// }
+  const size = (cate: String) => {
+    if(cate == "62348a61b370bb70f7be55bc"){
+        return <div>
+            <select id="" {...register('size')}>
+              {sizess.map((item, index)=> {
+                return <option value={index + 1}>{item.name}: {item.gia}</option>
+              })}
+            </select>
+        </div>
+    }else{
+        return <div>
+            {products?.price}
+        </div>
+    }
+}
 
   return (
     
@@ -105,17 +106,19 @@ const DetailProduct = (props: Props) => {
         <h2 className='text-3xl'>{products?.name}</h2>
         <p>{products?.description}</p>
         <h3 className='text-gray-500 text-xl mt-10'>Giá Sản phẩm </h3>
-        <h3 className='text-orange-500 text-xl font-bold'>
+       
+        {/* <h3 >
           <NumberFormat
             thousandsGroupStyle='thousand'
             value={products?.price}
             displayType="text"
             thousandSeparator={true}
           />
-          </h3> 
+          </h3>  */}
         <div className='flex my-4'>
 
           <form action="" onSubmit={handleSubmit(onSubmit)}>
+          <h3 className='text-orange-500 text-xl font-bold'>{size(products?.category)}</h3>
             {/* <input type="hidden" value={`${products?.image}`} {...register('image')} /> */}
             <span onClick={() => setcount(count - 1)} className='bg-orange-500 p-2'><i className="fa-solid fa-minus text-lg text-white"></i></span>
             <input className='border-2 border-slate-400 w-10 text-center mx-1' min="1" value={`${count}`} {...register('quantiny')} />

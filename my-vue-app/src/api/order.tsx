@@ -14,6 +14,11 @@ export const updatecard = (newobject : TypeCart) =>{
     const url = `cards/update/${newobject.user}`
     return instance.put(url, newobject)
 }
+export const updateStatu = (newstatus : TypeOrder) =>{
+    const url = `order/${newstatus._id}/update`
+    return instance.put(url, newstatus)
+}
+
 
 export const listdetailorder = (_id: String) => {
     const url = `orders/${_id}`

@@ -9,6 +9,7 @@ import {deleteCart} from '../api/cart'
 import {useForm, SubmitHandler} from 'react-hook-form'
 import { TypeOrder } from '../type/order';
 import { addorder, updatecard } from '../api/order';
+import Item from 'antd/lib/list/Item';
 
 type Props = {
   // onRemoveCR: (_id : number) => void
@@ -59,6 +60,8 @@ const Card = (props: Props) => {
       setcart(carts.filter(item => item._id !== _id))
     }
   }
+  
+ 
 
   const onSubmit : SubmitHandler<Form> =async data => {
     const {data : addOrder} = await addorder(data)
@@ -75,6 +78,18 @@ const Card = (props: Props) => {
     
   }
   console.log('quan trong',id)
+  const size = (cate: number, price: number) => {
+    if(cate == 1){
+       return "Size S : 90.000 VND"
+    }else if(cate == 2 ){
+     return "Size M : 120.000 VND"
+    }else if(cate == 3){
+     return "Size L : 150.000 VND"
+    }else{
+      return <NumberFormat thousandsGroupStyle='thousand' value={price} displayType='text' thousandSeparator={true} />
+ 
+ }}
+
 
 
   return (
@@ -98,12 +113,21 @@ const Card = (props: Props) => {
               <th scope="row"><img src={`${item.image}`} alt="" /></th>
               <td className='text-center py-4'>{item.name}</td>
               <td className='text-center py-4'>
-                <NumberFormat 
+              {/* {()=>{
+                if(item.size == 0){
+                  return ""
+                }
+                else{
+                  item.price
+                }
+              }} */}
+                {/* <NumberFormat 
                   thousandsGroupStyle='thousand'
-                  value={item.price}
+                  value=
                   displayType="text"
                   thousandSeparator={true}
-                />
+                /> */}
+                {size(item.size,item.price)}
                 </td>
               <td className='text-center py-4'>{item.quantiny}</td>
               <td className='text-center py-4'>

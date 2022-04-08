@@ -34,6 +34,10 @@ import toastr from 'toastr'
 import 'toastr/build/toastr.min.css'
 import { TypeCart } from './type/cart'
 import { addCard, deleteCart } from './api/cart'
+import Order from './pages/Admin/Order'
+import DetailOrder from './pages/Admin/DetailOrder'
+import QLOrder from './pages/QLOrder'
+import QLDOder from './pages/QLDOder'
 // import News from './pages/news'
 // import { add } from './api/products'
 
@@ -149,6 +153,10 @@ function App() {
           <Route path='blog' element={<BlogPage />}></Route>
           <Route path='cart/:id' element={<Card  />}></Route>
 
+          <Route path='order'>
+            <Route index element={<QLOrder/>}></Route>
+            <Route path=':id' element={<QLDOder/>}></Route>
+          </Route>
 
         </Route>
 
@@ -172,6 +180,11 @@ function App() {
             <Route index element={<Users user={users} Removeuser={RemoveUS} />}></Route>
             <Route path='add' element={<AddUser onUser={onAddUser} />}></Route>
             <Route path=':id/edit' element={<EditUser editUser={onEditUser} />}></Route>
+            
+          </Route>
+          <Route path='order'>
+            <Route index  element={<Order/>}></Route>
+            <Route path=':id' element={<DetailOrder/>}></Route>
           </Route>
         </Route>
       </Routes>

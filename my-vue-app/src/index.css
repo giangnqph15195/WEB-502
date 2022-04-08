@@ -11,6 +11,9 @@
 .biginput{
     @apply my-4
 }
+.inffo{
+    @apply font-bold py-1
+}
 .formm{
     width: 450px;
     margin-left: 520px;

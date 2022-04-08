@@ -12,17 +12,17 @@ const Products = (props: PropsList) => {
     <div>
       <h3 className='text-center text-3xl font-bold'>List Products</h3>
         <div><NavLink to="/admin/add"><i className="fa-solid fa-plus"></i>Thêm</NavLink></div>
-        <table className="table table-striped table-hover">
-  <thead className='table-dark'>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">Image</th>
-      <th scope="col">Price</th>
-      <th scope="col">Edit</th>
-      <th scope="col">Remove</th>
-    </tr>
-  </thead>
+      <table className="table table-striped table-hover">
+        <thead className='table-dark'>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Image</th>
+            <th scope="col">Price</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Remove</th>
+          </tr>
+        </thead>
   <tbody>
     {props.product.map((item, index) => {
       return <tr  key={index}>

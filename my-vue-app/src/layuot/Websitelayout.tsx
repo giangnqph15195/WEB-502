@@ -29,8 +29,8 @@ const Websitelayout = (props: Props) => {
 
     if(localStorage.getItem('user')){
         return<div className=""> 
-        <NavLink className="text-sm text-gray-700" onClick={()=>{ localStorage.removeItem('user') ; setuser(0)}} to="/">Đăng Xuất</NavLink>
-        
+        <NavLink className="text-sm text-gray-700" onClick={()=>{ localStorage.removeItem('user') ; setuser(0)}} to="/">Đăng Xuất</NavLink> <br />
+        <NavLink className="text-sm text-gray-700" to={`order`}>Đơn Hàng</NavLink>
         </div>
     }
     else{

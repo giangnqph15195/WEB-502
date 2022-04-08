@@ -41,27 +41,28 @@ const EditProduct = (props: PropsUpdate) => {
   },[])
   let imageUpdate = ""
   const onSubmit : SubmitHandler<Form> = async data => {
-    if(data.image[0] != 'h'){
-      const file = data.image[0]
-      const formData = new FormData()
+    console.log(data.image[0])
+    // if(data.image[0] != 'h'){
+    //   const file = data.image[0]
+    //   const formData = new FormData()
 
-      formData.append("file", file)
-      formData.append("upload_preset", "mi59v8ju")
+    //   formData.append("file", file)
+    //   formData.append("upload_preset", "mi59v8ju")
 
-      const {data : newimage} = await axios({
-        url: "https://api.cloudinary.com/v1_1/dkrifqhuk/image/upload",
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-formendcoded",
-        }, data: formData,
-      })
-      imageUpdate = newimage.url
-      data.image = imageUpdate
-      console.log(data.image)
-    }
-    console.log(data)
-    props.onUpdate(data)
-    navigate('/admin')
+    //   const {data : newimage} = await axios({
+    //     url: "https://api.cloudinary.com/v1_1/dkrifqhuk/image/upload",
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/x-www-formendcoded",
+    //     }, data: formData,
+    //   })
+    //   imageUpdate = newimage.url
+    //   data.image = imageUpdate
+    //   console.log(data.image)
+    // }
+    // console.log(data)
+    // props.onUpdate(data)
+    // navigate('/admin')
   }
   return (
     <div> 

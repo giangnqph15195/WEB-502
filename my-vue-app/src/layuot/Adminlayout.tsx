@@ -39,7 +39,7 @@ const Adminlayout = (props: Props) => {
               <NavLink to='/admin/categories'><Menu.Item icon={<LaptopOutlined  className='navbar'/>}  key="5">Categories</Menu.Item></NavLink>
               <NavLink to='/admin/users'><Menu.Item icon={<UserOutlined  className='navbar'/>}  key="5">Users</Menu.Item></NavLink>
               
-              <NavLink to="/admin/card"><Menu.Item icon={<NotificationOutlined className='navbar'/>} key="9">Cards</Menu.Item></NavLink>
+              <NavLink to="/admin/order"><Menu.Item icon={<NotificationOutlined className='navbar'/>} key="9">Order</Menu.Item></NavLink>
               <NavLink to="/"><Menu.Item icon={<UserOutlined className='navbar' />}  key="1">Home Pgae</Menu.Item></NavLink>
 
           </Menu>

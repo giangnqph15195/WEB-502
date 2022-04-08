@@ -1,11 +1,15 @@
 import React, { isValidElement, useState } from 'react'
 import {NavLink, Outlet} from 'react-router-dom'
-import { check, isAuthenticate } from '../utils/localSgate'
+import { check  } from '../utils/localSgate'
 type Props = {}
 
 const Websitelayout = (props: Props) => {
-  const [signout, setsinguot] = useState(localStorage.getItem('user'))
-  // setsinguot(signout)
+  
+  
+
+
+
+  const [user, setuser] = useState(1)
 
   const addressUser = () => {
     if(localStorage.getItem('user')){
@@ -13,11 +17,39 @@ const Websitelayout = (props: Props) => {
     }
   }
 
+  const isAuthenticate = () =>{
+    
+    // if(typeof window === "undefined") return;
+    // if(localStorage.getItem(key)){
+    //     return JSON.parse(localStorage.getItem(key) as string)
+    // } else {
+    //     return false
+    // }
+    const result = JSON.parse(localStorage.getItem('user') as string);
+
+    if(localStorage.getItem('user')){
+        return<div className=""> 
+        <NavLink className="text-sm text-gray-700" onClick={()=>{ localStorage.removeItem('user') ; setuser(0)}} to="/">Đăng Xuất</NavLink>
+        
+        </div>
+    }
+    else{
+        return (
+            <div className="">
+                <NavLink className="text-sm text-gray-700 "  to={'/signin'}>Đăng nhập</NavLink> <br />
+                <NavLink className="text-sm text-gray-700 "  to={'/signup'}>Đăng ký</NavLink>
+            </div>
+        ) 
+        
+    }
+   
+}
+
 
   return (
     <div>
-    <header>
-      <div className="bg-red-700 py-2 px-20 flex m-auto">
+    <header className=''>
+      <div className="bg-red-700 py-2 px-20 flex m-auto ">
                 <a href="#">
                     <img src="https://res.cloudinary.com/dkrifqhuk/image/upload/v1645017092/asm/footer_logo1_gvkbmr.png" className="mx-auto w-40 mt-2" alt="" />
                 </a>
@@ -67,9 +99,6 @@ const Websitelayout = (props: Props) => {
         
         
       </header>
-      
-     
-
 
 
      <Outlet/>

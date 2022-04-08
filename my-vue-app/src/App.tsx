@@ -15,7 +15,7 @@ import Products from './pages/Admin/Products'
 import AddProduct from './pages/Admin/AddProduct'
 import EditProduct from './pages/Admin/EditProduct'
 import { TypeProduct } from './type/products'
-import {TypeUser} from './type/user'
+import { TypeUser } from './type/user'
 import { create, list, remove, update } from './api/products'
 import DetailProduct from './pages/DetailProduct'
 import Catrgories from './pages/Admin/Catrgories'
@@ -34,152 +34,150 @@ import toastr from 'toastr'
 import 'toastr/build/toastr.min.css'
 import { TypeCart } from './type/cart'
 import { addCard, deleteCart } from './api/cart'
+// import News from './pages/news'
 // import { add } from './api/products'
 
 function App() {
   const [products, setproducts] = useState<TypeProduct[]>([])
-  const [categories,setcategories] = useState<TypeCategories[]>([])
+  const [categories, setcategories] = useState<TypeCategories[]>([])
   const [users, setuser] = useState<TypeUser[]>([])
   const [carts, setcart] = useState<TypeCart[]>([])
-  useEffect(()=>{
+  useEffect(() => {
     const getCT = async () => {
-      const {data} = await getall()
+      const { data } = await getall()
       setcategories(data)
     }
     getCT()
-  },[])
-  useEffect(()=> {
-      const getPd = async ()=> {
-        const {data} = await list()
-        setproducts(data)
-      }
-      getPd()
-  },[])
+  }, [])
+  useEffect(() => {
+    const getPd = async () => {
+      const { data } = await list()
+      setproducts(data)
+    }
+    getPd()
+  }, [])
 
-  useEffect(()=>{
+  useEffect(() => {
     const getUser = async () => {
-      const {data} = await listuser()
+      const { data } = await listuser()
       setuser(data)
     }
     getUser()
-  },[])
+  }, [])
 
-  const onAddPd = async (product : TypeProduct) =>{
+  const onAddPd = async (product: TypeProduct) => {
     try {
-      const {data} = await create(product)
-    setproducts([...products, data])
-    toastr.success("Bạn thêm sản phẩm thành công")
+      const { data } = await create(product)
+      setproducts([...products, data])
+      toastr.success("Bạn thêm sản phẩm thành công")
     } catch (error) {
       toastr.error("Bạn thêm sản phẩm không thành công")
     }
   }
 
-  const RemoveItem = async (_id:number)=> {
+  const RemoveItem = async (_id: number) => {
     const confirm = window.confirm('Bạn có muốn xóa không')
-    if(confirm){
+    if (confirm) {
       remove(_id)
       setproducts(products.filter(item => item._id !== _id))
     }
-   
+
   }
 
-  const onUpdateItem = async (product: TypeProduct)=>{
-    const {data} = await update(product)
+  const onUpdateItem = async (product: TypeProduct) => {
+    const { data } = await update(product)
     setproducts(products.map(item => item._id == data._id ? data : item))
   }
 
   const AddCategory = async (category: TypeCategories) => {
-    const {data} = await addct(category)
+    const { data } = await addct(category)
     setcategories([...categories, data])
   }
 
-  const UpdateCaTe =async (editcategory: TypeCategories) => {
-    const {data} = await updatect(editcategory)
+  const UpdateCaTe = async (editcategory: TypeCategories) => {
+    const { data } = await updatect(editcategory)
     setcategories(categories.map(item => item._id == data._id ? data : item))
   }
 
   const removeCT = async (_id: number) => {
     const confirm = window.confirm("Bạn có muốn xóa danh mục")
-    if(confirm){
+    if (confirm) {
       removect(_id)
       setcategories(categories.filter(item => item._id !== _id))
     }
-  
+
   }
   const onAddUser = async (userr: TypeUser) => {
-    const {data} = await adduser(userr)
+    const { data } = await adduser(userr)
     setuser([...users, data])
   }
 
-  const onEditUser = async (user : TypeUser) => {
-    const {data: newus} = await edituser(user)
+  const onEditUser = async (user: TypeUser) => {
+    const { data: newus } = await edituser(user)
     setuser(users.map(item => item._id == newus._id ? newus : item))
   }
 
-  const RemoveUS = async (_id:number) => {
+  const RemoveUS = async (_id: number) => {
     const confirm = window.confirm("Bạn có muốn xóa tài khoản")
-    if(confirm){
+    if (confirm) {
       removeuser(_id)
-    setuser(users.filter(item => item._id !== _id))
+      setuser(users.filter(item => item._id !== _id))
     }
   }
 
 
-  const AddCart = async (productCR:TypeCart)=> {
+  const AddCart = async (productCR: TypeCart) => {
     const addCr = async () => {
-      const {data} = await addCard(productCR)
-      setcart([...carts,data])
+      const { data } = await addCard(productCR)
+      setcart([...carts, data])
     }
     addCr()
   }
 
-  const RemoveCart = async (_id:number) => {
-    const RemoveCart = await deleteCart(_id)
-    setcart(carts.filter(item => item._id !== _id))
-  }
   return (
     <div className="App">
-     <Routes>
-      <Route path='/' element={<Websitelayout />}>
+      <Routes>
+        <Route path='/' element={<Websitelayout />}>
 
-          <Route index element={<HomePage product={products}/>}></Route>
+          <Route index element={<HomePage product={products} />}></Route>
           <Route path='products'>
-            <Route index element={<ListProducts/>}></Route>
-            <Route path=':id' element={<DetailProduct onAddCart={AddCart}/>}></Route>
+            <Route index element={<ListProducts />}></Route>
+            <Route path=':id' element={<DetailProduct onAddCart={AddCart} />}></Route>
           </Route>
 
-          <Route path='category/:slug' element={<Categories/>}></Route>
-          <Route path='blog' element={<BlogPage/>}></Route>
-          <Route path='cart/:id' element={<Card onRemoveCR={RemoveCart}/>}></Route>
+          <Route path='category/:slug' element={<Categories />}></Route>
+          <Route path='blog' element={<BlogPage />}></Route>
+          <Route path='cart/:id' element={<Card  />}></Route>
 
-      </Route>
+
+        </Route>
 
         <Route path='signin' element={<SignIn />}></Route>
-          <Route path='signup' element={<SignUp />}></Route>
-          
+        <Route path='signup' element={<SignUp />}></Route>
 
 
 
 
-          <Route path='admin' element={<Adminlayout/>}>
-            <Route index element={<Products product={products} onRemove={RemoveItem}/>}></Route>
-            <Route path='add' element={<AddProduct onAdd={onAddPd}/>}></Route>
-            <Route path=':id/edit' element={<EditProduct onUpdate={onUpdateItem}/>}></Route>
-            <Route path='categories' >
-              <Route index element={<Catrgories category={categories} onRemovect={removeCT}/>}></Route>
-              <Route path='add' element={<AddCategpries onAddCT={AddCategory}/>}></Route>
-              <Route path=':id/edit' element={<EditCategory onUpdatect={UpdateCaTe}/>}></Route>
-            </Route>
-            <Route path='users'>
-              <Route index element={<Users user={users} Removeuser={RemoveUS}/>  }></Route>
-              <Route path='add' element={<AddUser onUser={onAddUser}  />}></Route>
-              <Route path=':id/edit' element={<EditUser editUser={onEditUser}/>}></Route>
-            </Route>
+
+        <Route path='admin' element={<Adminlayout />}>
+          <Route index element={<Products product={products} onRemove={RemoveItem} />}></Route>
+          <Route path='add' element={<AddProduct onAdd={onAddPd} />}></Route>
+          <Route path=':id/edit' element={<EditProduct onUpdate={onUpdateItem} />}></Route>
+          <Route path='categories' >
+            <Route index element={<Catrgories category={categories} onRemovect={removeCT} />}></Route>
+            <Route path='add' element={<AddCategpries onAddCT={AddCategory} />}></Route>
+            <Route path=':id/edit' element={<EditCategory onUpdatect={UpdateCaTe} />}></Route>
           </Route>
-       </Routes>
+          <Route path='users'>
+            <Route index element={<Users user={users} Removeuser={RemoveUS} />}></Route>
+            <Route path='add' element={<AddUser onUser={onAddUser} />}></Route>
+            <Route path=':id/edit' element={<EditUser editUser={onEditUser} />}></Route>
+          </Route>
+        </Route>
+      </Routes>
     </div>
 
-    
+
   )
 }
 

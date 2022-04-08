@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { TypeUser } from "../type/user";
 
@@ -9,6 +10,7 @@ export const authenticated = (user : TypeUser , next: () => void ) => {
 // const results = JSON.parse(localStorage.getItem('user') as string)
 // export const id_tk = results.user.id
 export const isAuthenticate = () =>{
+    
     // if(typeof window === "undefined") return;
     // if(localStorage.getItem(key)){
     //     return JSON.parse(localStorage.getItem(key) as string)
@@ -19,8 +21,8 @@ export const isAuthenticate = () =>{
 
     if(localStorage.getItem('user')){
         return<div className=""> 
-        <NavLink className="text-sm text-gray-700" onClick={()=> localStorage.removeItem('user')} to="/">Đăng Xuất</NavLink>
-
+        <NavLink className="text-sm text-gray-700" onClick={()=>{ localStorage.removeItem('user') ; setuser(1)}} to="/">Đăng Xuất</NavLink>
+        
         </div>
     }
     else{

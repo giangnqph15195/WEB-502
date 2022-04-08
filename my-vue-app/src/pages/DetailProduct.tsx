@@ -12,6 +12,8 @@ import axios from 'axios'
 import toastr from 'toastr'
 import 'toastr/build/toastr.min.css'
 import { TypeCart } from '../type/cart'
+import NumberFormat from "react-number-format";
+import styles from './OtherNumberFormat.module.scss'
 // import { size } from '../utils/size'
 
 // const { Meta } = Card;
@@ -103,7 +105,14 @@ const DetailProduct = (props: Props) => {
         <h2 className='text-3xl'>{products?.name}</h2>
         <p>{products?.description}</p>
         <h3 className='text-gray-500 text-xl mt-10'>Giá Sản phẩm </h3>
-        <h3 className='text-orange-500 text-xl font-bold'>{products?.price}</h3> 
+        <h3 className='text-orange-500 text-xl font-bold'>
+          <NumberFormat
+            thousandsGroupStyle='thousand'
+            value={products?.price}
+            displayType="text"
+            thousandSeparator={true}
+          />
+          </h3> 
         <div className='flex my-4'>
 
           <form action="" onSubmit={handleSubmit(onSubmit)}>

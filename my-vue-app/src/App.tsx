@@ -153,10 +153,11 @@ function App() {
           <Route path='blog' element={<BlogPage />}></Route>
           <Route path='cart/:id' element={<Card  />}></Route>
 
-          <Route path='order'>
+          <Route path='order/:user'>
             <Route index element={<QLOrder/>}></Route>
-            <Route path=':id' element={<QLDOder/>}></Route>
-          </Route>
+            </Route>
+            <Route path='order/detail/:id' element={<QLDOder/>}></Route>
+          
 
         </Route>
 

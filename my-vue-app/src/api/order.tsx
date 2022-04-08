@@ -6,10 +6,15 @@ export const listorder = () =>{
     const url = 'orders'
     return instance.get(url)
 }
+export const listorderweb = (user:string) =>{
+    const url = `ordersweb/${user}` 
+    return instance.get(url)
+}
 export const addorder = (data: TypeOrder) =>{
     const url = `order`
     return instance.post(url, data)
 }
+
 export const updatecard = (newobject : TypeCart) =>{
     const url = `cards/update/${newobject.user}`
     return instance.put(url, newobject)

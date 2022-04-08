@@ -20,6 +20,7 @@ type Form = {
   address:string
   phone: number
   note: string
+  user: string
   // status:number
 }
 
@@ -64,7 +65,11 @@ const Card = (props: Props) => {
  
 
   const onSubmit : SubmitHandler<Form> =async data => {
-    const {data : addOrder} = await addorder(data)
+    const newdata = {
+      ...data,
+      user: id
+    }
+    const {data : addOrder} = await addorder(newdata)
     console.log('moi nhat nhat',addOrder._id)
     const newobject = {
        order: addOrder._id,

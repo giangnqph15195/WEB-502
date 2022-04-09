@@ -3,7 +3,9 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { TypeCategories } from '../../type/categories'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { Button, message } from 'antd';
 
+const key = 'updatable';
 type Props = {
   onAddCT: (catrgory: Form) => void
 }
@@ -38,6 +40,12 @@ const AddCategpries = (props: Props) => {
 
 
   }
+  const openMessage = () => {
+    message.loading({ content: 'Loading...', key });
+    setTimeout(() => {
+      message.success({ content: 'Loaded!', key, duration: 2 });
+    }, 1000);
+  };
   return (
     <div>
       <form className='m-auto max-w-4xl' onSubmit={handleSubmit(onSubmit)}>
@@ -49,7 +57,7 @@ const AddCategpries = (props: Props) => {
           <label className="form-label">Image Category:</label> <br />
           <input type="file" className='' {...register('image')} />
         </div>
-        <button className='btn btn-primary'>Add Category</button>
+        <button className='btn btn-primary' onClick={openMessage}>Add Category</button>
       </form>
     </div>
 

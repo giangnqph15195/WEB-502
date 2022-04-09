@@ -6,6 +6,9 @@ import { TypeProduct } from '../../type/products';
 import { TypeCategories } from '../../type/categories';
 import { getall } from '../../api/categories';
 import axios from 'axios'
+import {  message } from 'antd';
+
+const key = 'updatable'
 
 
 type PropsAdd = {
@@ -52,6 +55,13 @@ const AddProduct = (props: PropsAdd) => {
 
     console.log(data)
   }
+
+  const openMessage = () => {
+    message.loading({ content: 'Loading...', key });
+    setTimeout(() => {
+      message.success({ content: 'Loaded!', key, duration: 2 });
+    }, 2000);
+  };
   return (
     <div>
       <h3 className='text-center text-3xl font-bold'>Add Product</h3>
@@ -80,7 +90,7 @@ const AddProduct = (props: PropsAdd) => {
           <label className="form-label">Details:</label>
           <input type="text" className='form-control' {...register('description')} />
         </div>
-        <button type="submit" className="btn btn-primary">Submit</button>
+        <button  className="btn btn-primary" onClick={openMessage}>Submit</button>
       </form>
     </div>
   )

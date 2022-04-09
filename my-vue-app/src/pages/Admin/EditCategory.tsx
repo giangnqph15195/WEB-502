@@ -4,7 +4,9 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { useNavigate, useParams } from 'react-router-dom'
 import { get, getall } from '../../api/categories'
 import { TypeCategories } from '../../type/categories'
+import { Button, message } from 'antd';
 
+const key = 'updatable';
 type Props = {
     onUpdatect: (editcategory: Form) => void
 }
@@ -55,7 +57,15 @@ const EditCategory = (props: Props) => {
         navigate('/admin/categories')
         console.log(data)
         // console.log(data.image[0])
+        
     }
+    const openMessage = () => {
+        message.loading({ content: 'Loading...', key });
+        setTimeout(() => {
+          message.success({ content: 'Loaded!', key, duration: 2 });
+        }, 1000);
+      };
+    
     return (
         <div>
             <form className='m-auto max-w-4xl' onSubmit={handleSubmit(onSubmit)}>
@@ -71,7 +81,7 @@ const EditCategory = (props: Props) => {
                     <label className="form-label">Image Category:</label>
                     <input type="file" className='' {...register('image')} /> <br /> <br />
                 </div>
-                <button className='btn btn-primary'>Edit Category</button>
+                <button className='btn btn-primary' onClick={openMessage}>Edit Category</button>
             </form>
         </div>
     )

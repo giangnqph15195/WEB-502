@@ -14,6 +14,7 @@ import 'toastr/build/toastr.min.css'
 import { TypeCart } from '../type/cart'
 import NumberFormat from "react-number-format";
 import styles from './OtherNumberFormat.module.scss'
+import { message, Button, Space } from 'antd';
 // import { size } from '../utils/size'
 
 // const { Meta } = Card;
@@ -73,10 +74,12 @@ const DetailProduct = (props: Props) => {
     props.onAddCart(newObject)
     console.log(newObject)
     toastr.success("Thêm giỏ hàng thành công")
+    
    } catch (error) {
      toastr.error("Bạn phải đăng nhập")
    }
   }
+  
 
   const size = (cate: String) => {
     if(cate == "62348a61b370bb70f7be55bc"){
@@ -107,24 +110,25 @@ const DetailProduct = (props: Props) => {
         <p>{products?.description}</p>
         <h3 className='text-gray-500 text-xl mt-10'>Giá Sản phẩm </h3>
        
-        {/* <h3 >
+        <h3 >
           <NumberFormat
             thousandsGroupStyle='thousand'
             value={products?.price}
             displayType="text"
             thousandSeparator={true}
           />
-          </h3>  */}
+          </h3> 
         <div className='flex my-4'>
 
           <form action="" onSubmit={handleSubmit(onSubmit)}>
-          <h3 className='text-orange-500 text-xl font-bold'>{size(products?.category)}</h3>
+          {/* <h3 className='text-orange-500 text-xl font-bold'>{size(products?.category)}</h3> */}
+         
             {/* <input type="hidden" value={`${products?.image}`} {...register('image')} /> */}
             <span onClick={() => setcount(count - 1)} className='bg-orange-500 p-2'><i className="fa-solid fa-minus text-lg text-white"></i></span>
             <input className='border-2 border-slate-400 w-10 text-center mx-1' min="1" value={`${count}`} {...register('quantiny')} />
             <span onClick={() => setcount(count + 1)} className='bg-orange-500 p-2'><i className="fa-solid fa-plus text-lg text-white"></i></span>
             <div>
-            <button className='bg-orange-500 px-4 py-2 text-white text-lg mt-20'>Thêm vào giỏ hàng</button>
+            <button className='bg-orange-500 px-4 py-2 text-white text-lg mt-20' >Thêm vào giỏ hàng</button>
             </div>
           </form>
         </div>

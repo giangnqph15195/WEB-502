@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 // import { Table, Tag, Space } from 'antd';
-import {useParams} from 'react-router-dom'
+import {useParams, useNavigate} from 'react-router-dom'
 import { listcart, read } from '../api/cart'
 import { TypeCart } from '../type/cart'
 import NumberFormat from "react-number-format";
@@ -10,6 +10,8 @@ import {useForm, SubmitHandler} from 'react-hook-form'
 import { TypeOrder } from '../type/order';
 import { addorder, updatecard } from '../api/order';
 import Item from 'antd/lib/list/Item';
+import toastr from 'toastr'
+import 'toastr/build/toastr.min.css'
 
 type Props = {
   // onRemoveCR: (_id : number) => void
@@ -32,6 +34,7 @@ const Card = (props: Props) => {
 
   const [total, settotal] = useState<Number>()
   const {id} = useParams()
+  const navigate = useNavigate()
   const {register, handleSubmit, formState: {errors}} = useForm<TypeOrder>()
   // props.id(id)
 
@@ -65,35 +68,32 @@ const Card = (props: Props) => {
  
 
   const onSubmit : SubmitHandler<Form> =async data => {
-    const newdata = {
-      ...data,
-      user: id
-    }
-    const {data : addOrder} = await addorder(newdata)
-    console.log('moi nhat nhat',addOrder._id)
-    const newobject = {
-       order: addOrder._id,
-      user : id
-    }
-    const {data : updateCart} = await updatecard(newobject)
-    console.log(updateCart)
-    console.log(newobject)
+    try {
+      const newdata = {
+        ...data,
+        user: id
+      }
+      const {data : addOrder} = await addorder(newdata)
+      console.log('moi nhat nhat',addOrder._id)
+      const newobject = {
+         order: addOrder._id,
+        user : id
+      }
+      const {data : updateCart} = await updatecard(newobject)
+      console.log(updateCart)
+      console.log(newobject)
+      toastr.success("Đặt hàng thành công")
 
-    console.log(data)
+      navigate(`/order/${JSON.parse(localStorage.getItem('user')as string).user._id}`)
+  
+      console.log(data)
+    } catch (error) {
+      toastr.error("Đặt hàng không thành công")
+    }
     
   }
   console.log('quan trong',id)
-  const size = (cate: number, price: number) => {
-    if(cate == 1){
-       return "Size S : 90.000 VND"
-    }else if(cate == 2 ){
-     return "Size M : 120.000 VND"
-    }else if(cate == 3){
-     return "Size L : 150.000 VND"
-    }else{
-      return <NumberFormat thousandsGroupStyle='thousand' value={price} displayType='text' thousandSeparator={true} />
- 
- }}
+
 
 
 
@@ -118,21 +118,14 @@ const Card = (props: Props) => {
               <th scope="row"><img src={`${item.image}`} alt="" /></th>
               <td className='text-center py-4'>{item.name}</td>
               <td className='text-center py-4'>
-              {/* {()=>{
-                if(item.size == 0){
-                  return ""
-                }
-                else{
-                  item.price
-                }
-              }} */}
-                {/* <NumberFormat 
+        
+                <NumberFormat 
                   thousandsGroupStyle='thousand'
-                  value=
+                  value={item.price}
                   displayType="text"
                   thousandSeparator={true}
-                /> */}
-                {size(item.size,item.price)}
+                /> VND
+        
                 </td>
               <td className='text-center py-4'>{item.quantiny}</td>
               <td className='text-center py-4'>
@@ -141,7 +134,7 @@ const Card = (props: Props) => {
                   value={item.quantiny * item.price}
                   displayType="text"
                   thousandSeparator={true}
-                />
+                /> VND
                 </td>
               <td className='text-center'><button onClick={()=> {onRemoveCR(item._id)}}><i className="fa-solid fa-trash-can"></i></button></td>
             </tr>

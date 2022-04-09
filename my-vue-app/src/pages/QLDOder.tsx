@@ -37,51 +37,7 @@ const QLDOder = (props: Props) => {
         }
         inffo()
     },[])
-    const price1 = 90000;
-    const price2 = 120000
-    const price3 = 150000
 
-    const size = (cate: number, price: number) => {
-        if(cate == 1){
-           return `Size S :  ${price1} VND`
-        }else if(cate == 2 ){
-         return `Size M : ${price2} VND`
-        }else if(cate == 3){
-         return `Size L : ${price3} VND`
-        }else{
-          return <NumberFormat thousandsGroupStyle='thousand' value={price} displayType='text' thousandSeparator={true} />
-     
-     }}
-     const tong = (size : number, quantiny: number, price : number) => {
-        if(size == 0){
-            return quantiny * price
-        }else if(size == 1){
-           return price1 * quantiny
-        }else if(size == 2){
-            return price2 * quantiny
-         }else if(size == 3){
-            return  price3 * quantiny
-         }
-     }
-    //  const Status = (status: number) => {
-    //     if(status == 0){
-    //       return <select  id="" {...register('status')}>
-    //         <option value="10">Hủy đơn hàng</option>
-    //     </select>
-    //     }else if(status == 1){
-    //       <select  id="" {...register('status')}>
-    //       <option value="10">Hủy đơn hàng</option>
-    //   </select>
-    //     }else if(status == 2){
-    //       return <select  id="" {...register('status')}>
-    //         <option value="4">Đang Nhận</option>
-    //     </select>
-    //     }else if(status == 3){
-    //       return <select  id="" {...register('status')}>
-    //       <option value="4">Đang Nhận</option>
-    //   </select>
-    //     }
-    // }
 
      const updateStatus = (status: number) => {
         if(status == 0){
@@ -94,7 +50,11 @@ const QLDOder = (props: Props) => {
         </select>
         }else if(status == 2){
             return <select  id="" {...register('status')}>
-            <option value="4">Đang Nhận</option>
+            <option value="4">Đã Nhận</option>
+        </select>
+        }else if(status == 3){
+            return <select  id="" {...register('status')}>
+            <option value="4">Đã Nhận</option>
         </select>
         }
         else if(status == 10){
@@ -115,15 +75,17 @@ const QLDOder = (props: Props) => {
        console.log(updateSta)
    }
   return (
-    <div>QLDOder
-        <Steps current={info?.status} percent={60}>
+    <div ><h3 className='text-center font-bold text-xl mt-10'>Details Order</h3>
+       <div className="pt-24 max-w-5xl m-auto"> <Steps current={info?.status} percent={60} >
     <Step title="Chờ Xác Nhần" />
     <Step title="Đã Xác nhận" description="This is a description." />
     <Step title="Đang giao" description="This is a description." />
-    <Step title="Đã nhận hàng" description="This is a description." />
-  </Steps>
+    <Step title="Đã giao" description="This is a description." />
 
-  <div className='flex'>
+    <Step title="Đã nhận hàng" description="This is a description." />
+  </Steps></div>
+
+  <div className='flex max-w-7xl m-auto py-10'>
                 <table className="table table-striped table-hover w-9/12">
                     <thead className='table-dark'>
                         <tr className='text-center'>
@@ -142,16 +104,21 @@ const QLDOder = (props: Props) => {
                                 <td width={290} scope="col">{item.name}</td>
                                 <td width={80} scope="col"><img width={80} src={`${item.image}`} alt="" /></td>
                                 <td scope="col">
-                                    {/* <NumberFormat
+                                    <NumberFormat
                                         thousandsGroupStyle='thousand'
                                         value={item.price}
                                         displayType= 'text'
                                         thousandSeparator= {true}
-                                    /> */}
-                                    {size(item.size,item.price)}
+                                    /> VND
+                                    {/* {size(item.size,item.price)} */}
                                     </td>
                                 <td scope="col">{item.quantiny}</td>
-                                <td scope="col">{tong(item.size, item.quantiny, item.price)}</td>
+                                <td scope="col"> <NumberFormat
+                                        thousandsGroupStyle='thousand'
+                                        value={item.price * item.quantiny}
+                                        displayType= 'text'
+                                        thousandSeparator= {true}
+                                    /> VND</td>
                             </tr>
                         })}
 

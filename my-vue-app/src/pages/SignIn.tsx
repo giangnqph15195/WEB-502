@@ -39,11 +39,21 @@ const SignIn = (props: Props) => {
             <div className='my-8'></div>
             <div className='biginput'>
               <label className='font-bold' htmlFor="">Email:</label>
-              <input className='inputform' type="text" placeholder='VD: email@abc.com' {...register('email')} />
+              <input className='inputform' type="text" placeholder='VD: email@abc.com' {...register('email', {required:true})} />
+              {Object.keys(errors).length !== 0 && (
+                <ul>
+                  {errors.email?.type == 'required' && (<li className='text-[red]'>Email không được trống</li>)}
+                </ul>
+              )}
             </div>
             <div className='biginput'>
               <label className='font-bold' htmlFor="">Mật khẩu:</label>
-              <input className='inputform' type="text" placeholder='Mật khẩu' {...register('password')} />
+              <input className='inputform' type="text" placeholder='Mật khẩu' {...register('password', {required:true})} />
+              {Object.keys(errors).length !== 0 && (
+                <ul>
+                  {errors.password?.type == 'required' && (<li className='text-[red]'>Mật khẩu không được trống</li>)}
+                </ul>
+              )}
             </div>
             <div className='biginput'>
               <p className='text-center text-sm'>Thông qua việc đăng ký, bạn xác nhận rằng bạn đồng ý Điều khoàn sử dụng và đã đọc, hiểu Chính sách Quyền riêng tư của chúng tôi</p>

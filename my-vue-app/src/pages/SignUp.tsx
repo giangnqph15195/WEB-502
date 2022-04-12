@@ -34,22 +34,47 @@ const SignUp = (props: Props) => {
 
             <div>
                 <form action="" onSubmit={handleSubmit(onSingUp)} className='formm bg-white rounded-lg p-8'>
+                {/* {Object.keys(errors).length !== 0 && (
+                            <ul className='w-[70%]'>
+                                {errors.name?.type === "required" && <li className='text-[red]'>Tên không được bỏ trống</li>}
+                                {errors.email?.type === "required" && (<li className='text-[red]'>Mô tả không được bỏ trống</li>)}
+                                {errors.password?.type === "required" && (<li className='text-[red]'>Email không được bỏ trống</li>)}
+                            </ul>
+                        )} */}
                     <h3 className='text-center text-xl font-bold'>Đăng ký thành viên</h3>
                     <div className='my-8'></div>
                     <div className='biginput'>
                         <label className='font-bold' htmlFor="">Họ tên:</label>
-                        <input className='inputform' type="text" placeholder='VD: Giang Nguyễn' {...register('name')} />
+                        <input className='inputform' type="text" placeholder='VD: Giang Nguyễn' {...register('name',{required:true})} />
+                        {Object.keys(errors).length !== 0 && (
+                            <ul className='w-[70%]'>
+                                {errors.name?.type === "required" && <li className='text-[red]'>Tên không được bỏ trống</li>}
+                                {/* {errors.email?.type === "required" && (<li className='text-[red]'>Mô tả không được bỏ trống</li>)}
+                                {errors.password?.type === "required" && (<li className='text-[red]'>Email không được bỏ trống</li>)} */}
+                            </ul>
+                        )}
                     </div>
                     <div className='biginput'>
                         <label className='font-bold' htmlFor="">Email:</label>
-                        <input className='inputform' type="text" placeholder='VD: email@abc.com' {...register('email')} />
+                        <input className='inputform' type="text" placeholder='VD: email@abc.com' {...register('email',{required:true, pattern:/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/})} />{Object.keys(errors).length !== 0 && (
+                            <ul className='w-[70%]'>
+                                {errors.email?.type === "required" && (<li className='text-[red]'>Email không được bỏ trống</li>)}
+                                {errors.email?.type === "pattern" && (<li className='text-[red]'>Email không hợp lệ</li>)}
+                            </ul>
+                        )}
+                        
                     </div>
                     <div className='biginput'>
                         <label className='font-bold' htmlFor="">Mật khẩu:</label>
-                        <input className='inputform' placeholder='Mật khẩu' type="password" {...register('password')} />
+                        <input className='inputform' placeholder='Mật khẩu' type="password" {...register('password',{required:true})} />
+                        {Object.keys(errors).length !== 0 && (
+                            <ul className='w-[70%]'>
+                                {errors.password?.type === "required" && (<li className='text-[red]'>PassWord không được bỏ trống</li>)}
+                            </ul>
+                        )}
                     </div>
                     <div className='biginput'>
-                        <input className='inputform' type="hidden" value={`1`} {...register('role')} />
+                        <input className='inputform' type="hidden" value={`1`} {...register('role',{required:true})} />
                     </div>
                     <div className='biginput'>
                        <p className='text-center text-sm'>Thông qua việc đăng ký, bạn xác nhận rằng bạn đồng ý Điều khoàn sử dụng và đã đọc, hiểu Chính sách Quyền riêng tư của chúng tôi</p>

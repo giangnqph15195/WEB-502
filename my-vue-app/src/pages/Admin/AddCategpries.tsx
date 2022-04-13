@@ -51,11 +51,22 @@ const AddCategpries = (props: Props) => {
       <form className='m-auto max-w-4xl' onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-3">
           <label className="form-label">Name Category:</label>
-          <input type="text" className='form-control' {...register('name')} />
+          <input type="text" className='form-control' {...register('name',{required:true, minLength:5 })} />
+          {Object.keys(errors).length !== 0 &&(
+            <ul>
+              {errors.name?.type=='required' && <li className='text-[red]'>Name không được để trống</li>}
+              {errors.name?.type=='minLength' && <li className='text-[red]'>Phải nhập trên 5 ký tự</li>}
+            </ul>
+          )}
         </div>
         <div className="mb-3">
           <label className="form-label">Image Category:</label> <br />
-          <input type="file" className='' {...register('image')} />
+          <input type="file" className='' {...register('image',{required:true})} />
+          {Object.keys(errors).length !== 0 &&(
+            <ul>
+              {errors.image?.type == 'required' && <li className='text-[red]'>Bạn chưa chọn ảnh</li>}
+            </ul>
+          )}
         </div>
         <button className='btn btn-primary' onClick={openMessage}>Add Category</button>
       </form>

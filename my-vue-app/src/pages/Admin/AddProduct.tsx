@@ -66,29 +66,58 @@ const AddProduct = (props: PropsAdd) => {
     <div>
       <h3 className='text-center text-3xl font-bold'>Add Product</h3>
       <form className='m-auto max-w-4xl' onSubmit={handleSubmit(onSubmit)}>
-        <select id="" {...register('category')}>
+        <select id="" {...register('category', {required:true})}>
           {category.map((item) => {
             return <option value={`${item._id}`}>
               {item.name}
             </option>
           })}
         </select>
+        {Object.keys(errors).length !== 0 &&(
+            <ul>
+              {errors.category?.type == 'required' && <li className='text-[red]'>Bạn chưa chọn danh mục</li>}
+            </ul>
+          )}
         <div className="mb-3">
           <label className="form-label">Name Product:</label>
-          <input type="text" className='form-control' {...register('name')} />
+          <input type="text" className='form-control' {...register('name', {required:true, minLength: 5})} />
+          {Object.keys(errors).length !== 0 &&(
+            <ul>
+              {errors.name?.type == 'required' && <li className='text-[red]'>Không được để trống name</li>}
+              {errors.name?.type == 'minLength' && <li className='text-[red]'>Nhập trên 5 ký tự</li>}
+
+            </ul>
+          )}
         </div>
 
         <div className="mb-3">
           <label className="form-label">Image Product:</label>
-          <input type="file" className='form-control' {...register('image')} />
+          <input type="file" className='form-control' {...register('image', {required:true})} />
+          {Object.keys(errors).length !== 0 &&(
+            <ul>
+              {errors.image?.type == 'required' && <li className='text-[red]'>Bạn chưa thêm ảnh</li>}
+            </ul>
+          )}
         </div>
         <div className="mb-3">
           <label className="form-label">Price:</label>
-          <input type="number" className='form-control' {...register('price')} />
+          <input type="number" className='form-control' {...register('price', {required:true, pattern:  /[0-9]/})} />
+          {Object.keys(errors).length !== 0 &&(
+            <ul>
+              {errors.price?.type == 'required' && <li className='text-[red]'>Bạn chưa nhập price</li>}
+              {errors.price?.type == 'pattern' && <li className='text-[red]'>Bạn phải nhập số </li>}
+            </ul>
+          )}
         </div>
         <div className="mb-3">
           <label className="form-label">Details:</label>
-          <input type="text" className='form-control' {...register('description')} />
+          <input type="text" className='form-control' {...register('description',{required:true, minLength: 5})} />
+          {Object.keys(errors).length !== 0 &&(
+            <ul>
+              {errors.description?.type == 'required' && <li className='text-[red]'>Bạn chưa nhập</li>}
+              {errors.description?.type == 'minLength' && <li className='text-[red]'>Quá ngắn</li>}
+            </ul>
+          )}
         </div>
         <button  className="btn btn-primary" onClick={openMessage}>Submit</button>
       </form>

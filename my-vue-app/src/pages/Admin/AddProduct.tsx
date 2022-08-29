@@ -50,7 +50,7 @@ const AddProduct = (props: PropsAdd) => {
       data.image = res.data.url
       console.log(data.image)
       props.onAdd(data)
-      navigate('/admin')
+      navigate('/admin/products')
     })
 
     console.log(data)

@@ -38,6 +38,7 @@ import Order from './pages/Admin/Order'
 import DetailOrder from './pages/Admin/DetailOrder'
 import QLOrder from './pages/QLOrder'
 import QLDOder from './pages/QLDOder'
+import Admin from './pages/Admin/Admin'
 // import News from './pages/news'
 // import { add } from './api/products'
 
@@ -168,7 +169,8 @@ function App() {
 
 
         <Route path='admin' element={<Adminlayout />}>
-          <Route index element={<Products product={products} onRemove={RemoveItem} />}></Route>
+          <Route index element={<Admin product={products} category={categories} user={users}/>}></Route>
+          <Route path='products' element={<Products product={products} onRemove={RemoveItem} />}></Route>
           <Route path='add' element={<AddProduct onAdd={onAddPd} />}></Route>
           <Route path=':id/edit' element={<EditProduct onUpdate={onUpdateItem} />}></Route>
           <Route path='categories' >

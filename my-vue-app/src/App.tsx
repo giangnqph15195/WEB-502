@@ -142,7 +142,6 @@ function App() {
     <div className="App">
       <Routes>
         <Route path='/' element={<Websitelayout />}>
-
           <Route index element={<HomePage product={products} />}></Route>
           <Route path='products'>
             <Route index element={<ListProducts />}></Route>

@@ -40,7 +40,7 @@ const Categories = (props: Props) => {
   }, [slug])
 
   return (
-    <div>
+    <div className='mb-[90px]'>
       <Carousel autoplay>    
           <div>
           <img src="https://res.cloudinary.com/dkrifqhuk/image/upload/v1645592616/asm/ryrjfbma5dup7ckgwg1x.png" alt="" />

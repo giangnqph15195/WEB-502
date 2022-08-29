@@ -81,7 +81,7 @@ const Websitelayout = (props: Props) => {
             <div className="bg-red-600 flex">
             <ul className='flex p-0 mb-[0px]'>
           <li className='menu_list'><NavLink className='text-white hover:text-orange-500'  to='/'>Home Page</NavLink></li>
-          <li className='menu_list'><NavLink className='text-white hover:text-orange-500' to='/products'>Products Page</NavLink></li>
+          <li className='menu_list'><NavLink className='text-white hover:text-orange-500' to='/products'>Contact Page</NavLink></li>
           <li className='menu_list'><NavLink className='text-white hover:text-orange-500' to='/blog'>Blog Page</NavLink></li>
           <li className='justify-center mx-20 my-8'>
            <div className=''>
@@ -102,7 +102,74 @@ const Websitelayout = (props: Props) => {
 
 
      <Outlet/>
-     <footer className="bg-[#252c4f] text-white py-2 mt-8 bg-[url('https://res.cloudinary.com/dkrifqhuk/image/upload/v1645442366/asm/footer_bg_uppyg7.jpg')]">
+     <div className=' bg-[url(https://www.pizzaexpress.vn/wp-admin/admin-ajax.php?action=kc_get_thumbn&type=filter_url&id=%2Fwp-content%2Fuploads%2F2018%2F05%2Ffooter_top_bg.png)]'>
+        <div className='flex max-w-7xl m-auto py-[50px]'>
+          <div className="block px-[15px]">
+            <div className='ml-[120px] my-[20px]' >
+              <img className="" src="https://res.cloudinary.com/dkrifqhuk/image/upload/v1661742326/asm/footer_01_e5c2fg.png" alt="" />
+            </div>
+            <div className="text-[20px] ">
+              <h3 className='text-[#c00a27] text-center'>Chất lượng dẫn đầu</h3>
+            </div>
+            <div className="">
+              <p className='text-center leading-6'>Chú trọng khâu tuyển chọn đội ngũ đầu bếp chuyên nghiệp, thực đơn của Pizza
+                Capichi
+                luôn được đổi mới, đa dạng với pizza nhiều hương vị, sandwich, mỳ ý và các món
+                ăn
+                nhanh khác.</p>
+            </div>
+          </div>
+
+          <div className="block px-[15px]">
+            <div className='ml-[120px] my-[20px]' >
+              <img className="" src="https://res.cloudinary.com/dkrifqhuk/image/upload/v1661742333/asm/footer_02_k0lrpm.png" alt="" />
+            </div>
+            <div className="text-[20px] ">
+              <h3 className='text-[#c00a27] text-center'>GIAO HÀNG ĐÚNG GIỜ</h3>
+            </div>
+            <div className="">
+              <p className='text-center leading-6'>Để tăng cường sự tin tưởng và yên tâm với khách hàng, Pizza Capichi cam kết luôn
+                giao hàng đúng giờ và chi phí giao hàng rẻ nhất để đảm bảo khách hàng có thể
+                nhận bánh trong thời gian nhanh nhất.</p>
+            </div>
+          </div>
+
+          <div className="block px-[15px]">
+            <div className='ml-[120px] my-[20px]' >
+              <img className="" src="https://res.cloudinary.com/dkrifqhuk/image/upload/v1661742341/asm/footer_03_tokhjm.png" alt="" />
+            </div>
+            <div className="text-[20px] ">
+              <h3 className='text-[#c00a27] text-center'>Pizza Take Away</h3>
+            </div>
+            <div className="">
+              <p className='text-center leading-6'>Lựa chọn cho mình một hướng đi mới để tạo nên sự khác biệt, mô hình Pizza take
+                away - pizza mang đi giúp khách hàng tiết kiệm thời gian, đem đến sự tiện lợi
+                tối ưu trong việc lựa chọn, thanh toán, đóng gói và nhận hàng.</p>
+            </div>
+          </div>
+
+          <div className="block px-[15px]">
+            <div className='ml-[120px] my-[20px]' >
+              <img className="" src="https://res.cloudinary.com/dkrifqhuk/image/upload/v1661742346/asm/footer_04_oe5s1b.png" alt="" />
+            </div>
+            <div className="text-[20px] ">
+              <h3 className='text-[#c00a27] text-center'>Phục vụ chuyên nghiệp</h3>
+            </div>
+            <div className="">
+              <p className='text-center leading-6'>Pizza Capichi cùng với đội ngũ nhân viên mang đầy sức trẻ và nhiệt huyết, chúng
+                tôi luôn mong muốn đem lại cho khách hàng của mình chất lượng dịch vụ tốt nhất,
+                luôn lắng nghe và chăm sóc những nhu cầu dù là nhỏ nhất của Quý khách.</p>
+            </div>
+          </div>
+
+
+
+
+        </div>
+
+
+      </div>
+     <footer className="bg-[#252c4f] text-white py-2 bg-[url('https://res.cloudinary.com/dkrifqhuk/image/upload/v1645442366/asm/footer_bg_uppyg7.jpg')]">
             <h2 className="text-3xl text-yellow-300 text-center my-2">CÔNG TY TNHH PIZZA EXPRESS VIỆT NAM</h2>
             <p className="text-center my-4">Để đặt bánh pizza, vui lòng liên hệ tổng đài số: 024.36.888.777</p>
             <p className="text-center my-4">Để phản ánh chất lượng dịch vụ, vui lòng gọi số: 0989.139.565</p>

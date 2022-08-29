@@ -33,7 +33,7 @@ const HomePage = (props: Props) => {
     getCate()
   }, [])
   return (
-    <div>
+    <div className='mb-[90px]'>
       <Carousel autoplay>
         <div>
           <img src="https://res.cloudinary.com/dkrifqhuk/image/upload/v1645592616/asm/ryrjfbma5dup7ckgwg1x.png" alt="" />
@@ -93,31 +93,6 @@ const HomePage = (props: Props) => {
             </div>
           </div>
         })}
-
-        {/* <Card
-                  hoverable
-                  style={{ width:230}}
-                  cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-                >
-                  <Meta className='text-center' title="Pizza One Shot" description="17000" />
-                  <button className='bg-orange-600 p-2 rounded-xl mt-2 ml-12'>Mua Hàng</button>
-                </Card> */}
-        {/* <Card
-                  hoverable
-                  style={{ width:230}}
-                  cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-                >
-                  <Meta className='text-center' title="Pizza One Shot" description="17000" />
-                  <button className='bg-orange-600 p-2 rounded-xl mt-2 ml-12'>Mua Hàng</button>
-                </Card>
-                <Card
-                  hoverable
-                  style={{ width:230}}
-                  cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-                >
-                  <Meta className='text-center' title="Pizza One Shot" description="17000" />
-                  <button className='bg-orange-600 p-2 rounded-xl mt-2 ml-12'>Mua Hàng</button>
-                </Card> */}
       </div>
 
     </div>

@@ -33,7 +33,8 @@ const QLOrder = (props: Props) => {
     }
 }
   return (
-    <div>QLOrder
+    <div className='mb-[90px]'>
+      <h1 className='text-center text-[25px] font-bold my-[30px]'>Danh Sách Đơn Hàng</h1>
          <table className="table table-striped table-hover max-w-5xl m-auto">
                     <thead className='table-dark'>
                         <tr className='text-center'>
